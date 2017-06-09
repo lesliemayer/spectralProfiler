@@ -114,11 +114,15 @@ class PlotDialog(cls_dialog, ui_dialog):
         """
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
-        # Add a title
+
+        # Add a title - lrm
         self.ax.set_title("This is the title")
         self.ax.grid(True)
         self.canvas = FigureCanvas(self.figure)
         self.ax.set_xlabel('Wavelength (nm)')
+
+        # Add a y label - lrm
+        self.ax.set_ylabel('Reflectance')
         self.mplvl.addWidget(self.canvas)
 
         # Add the toolbar
