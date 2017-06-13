@@ -93,11 +93,13 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.plot_windows = {}
 
     def initgui(self):
-        # Continuum Correction
-        self.continuum_bottom.valueChanged.connect(lambda i: self.continuum_bottom_label.setText('{}'.format(
-            self.wavelengths[i])))
-        self.continuum_top.valueChanged.connect(lambda i: self.continuum_top_label.setText('{}'.format(
-            self.wavelengths[i])))
+
+        # lrm
+        # # Continuum Correction
+        # self.continuum_bottom.valueChanged.connect(lambda i: self.continuum_bottom_label.setText('{}'.format(
+        #     self.wavelengths[i])))
+        # self.continuum_top.valueChanged.connect(lambda i: self.continuum_top_label.setText('{}'.format(
+        #     self.wavelengths[i])))
 
         # lrm
         # # Add + icon to button to add a wavelength
