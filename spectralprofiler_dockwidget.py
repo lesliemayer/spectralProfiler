@@ -160,7 +160,10 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         correction_method = self.correction_method.currentText()
         smoothing_method = self.smoothing_method.currentText()
-        smoothing_window_size = int(self.smoothing_window_size.value())
+
+        # lrm
+        #smoothing_window_size = int(self.smoothing_window_size.value())
+        smoothing_window_size = 7
 
 
         #offset = float(self.offset.value())
