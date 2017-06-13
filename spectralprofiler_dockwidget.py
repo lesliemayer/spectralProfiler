@@ -112,7 +112,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.clipping_upper.valueChanged.connect(lambda i: self.clipping_upper_label.setText('{}'.format(
             self.wavelengths[i])))
 
-        #Spectral Smoothing
+        # #Spectral Smoothing
 
         self.plot_selected.clicked.connect(self.plot)
 
@@ -144,21 +144,36 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         if widget is not None:
             widget.widget().deleteLater()
 
+    # This is called when "Plot Selcted" button is hit
     def plot(self):
+        print("spectralprofiler_dockwidget : plot")
+
         # Get the continuum endpoints
-        continuum_endpoints = []
-        for i in range(self.cc_slider_vlb.count()):
-            row_widget = self.cc_slider_vlb.itemAt(i).widget()
-            for element in row_widget.children():
-                if isinstance(element, QtGui.QLabel):
-                    continuum_endpoints.append(float(element.text()))
+        # continuum_endpoints = []
+        # for i in range(self.cc_slider_vlb.count()):
+        #     row_widget = self.cc_slider_vlb.itemAt(i).widget()
+        #     for element in row_widget.children():
+        #         if isinstance(element, QtGui.QLabel):
+        #             continuum_endpoints.append(float(element.text()))
+        # lrm
+        continuum_endpoints = [500., 1700.]  # This is for the correction
 
         correction_method = self.correction_method.currentText()
         smoothing_method = self.smoothing_method.currentText()
         smoothing_window_size = int(self.smoothing_window_size.value())
-        offset = float(self.offset.value())
-        clipping_lower = float(self.clipping_lower_label.text())
-        clipping_upper = float(self.clipping_upper_label.text())
+
+
+        #offset = float(self.offset.value())
+        #print("spectralprofiler_dockwidget : plot : offset = {}".format(offset))
+        offset = float(0.)  # lrm
+        print("spectralprofiler_dockwidget : plot : offset = {}".format(offset))
+
+        # The plotting x-axis range
+        # clipping_lower = float(self.clipping_lower_label.text())
+        # clipping_upper = float(self.clipping_upper_label.text())
+        clipping_lower = float(500.)
+        clipping_upper = float(1700.)
+        print("spectralprofiler_dockwidget : plot : clipping_lower, clipping_upper = {} {}".format(clipping_lower, clipping_upper))
 
         pcorrect = None
         for i in range(self.correction_vlb.count()):
@@ -179,13 +194,13 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         spectra = self.parent.spectra
 
         # lrm ----------------------------------------------
-        selected = v_layer.selectedFeatures()
-        for i in selected:
-            #attrs = i.attributeMap()
-            fields = i.fields()
-            #print "fields = " + str(fields)
-            # for (k, attr) in attrs.iteritems():
-            #      print "%d: %s" % (k, attr.toString())
+        # selected = v_layer.selectedFeatures()
+        # for i in selected:
+        #     #attrs = i.attributeMap()
+        #     fields = i.fields()
+        #     #print "fields = " + str(fields)
+        #     # for (k, attr) in attrs.iteritems():
+        #     #      print "%d: %s" % (k, attr.toString())
         # --------------------------------------------------
 
         selected = v_layer.selectedFeatures()
