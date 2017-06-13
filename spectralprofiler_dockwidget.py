@@ -99,10 +99,15 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.continuum_top.valueChanged.connect(lambda i: self.continuum_top_label.setText('{}'.format(
             self.wavelengths[i])))
 
-        self.add_endpoint.setIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                                           'icons/add.png')))
-        self.remove_endpoint.setIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                                              'icons/remove.png')))
+        # lrm
+        # # Add + icon to button to add a wavelength
+        # self.add_endpoint.setIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+        #                                                    'icons/add.png')))
+        # # Add - icon to button for removing a wavelength
+        # self.remove_endpoint.setIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+        #                                                       'icons/remove.png')))
+
+
         self.add_endpoint.clicked.connect(self.add_continuum_endpoint)
         self.remove_endpoint.clicked.connect(self.remove_continuum_endpoint)
 
@@ -218,7 +223,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         #     #      print "%d: %s" % (k, attr.toString())
         # --------------------------------------------------
 
-        # The selected sp data :
+        # Get filename and selected sp data :
         selected = v_layer.selectedFeatures()
         d = defaultdict(list)
         for s in selected:
@@ -230,7 +235,8 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # u'SP_2C_02_03860_S136_E3557.spc': [20, 21, 22, 23, 24, 25, 26, 27]
         print("spectralprofiler_dockwidget : plot : d = {}".format(d))
 
-        selected_spectra = {}
+
+        selected_spectra = {}  # u'SP_2C_02_03860_S136_E3557.spc' - a pandas class ***
 
         for k, obs in d.iteritems():
             selected_spectra[k] = spectra[k].spectra.iloc[obs]
