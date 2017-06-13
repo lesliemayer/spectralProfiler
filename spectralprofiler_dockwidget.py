@@ -158,8 +158,17 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # lrm
         continuum_endpoints = [500., 1700.]  # This is for the correction
 
-        correction_method = self.correction_method.currentText()
-        smoothing_method = self.smoothing_method.currentText()
+        # lrm
+        #correction_method = self.correction_method.currentText()
+        #print("type of correction_method = {}".format(type(correction_method)))
+        # smoothing_method = self.smoothing_method.currentText()
+        # lrm
+        correction_method = unicode("Linear")
+        #smoothing_method = unicode("Gaussian")
+        smoothing_method = unicode("None")
+        print("spectralprofiler_dockwidget : plot : correction_method = {}".format(correction_method))
+        print("spectralprofiler_dockwidget : plot : smoothing_method = {}".format(smoothing_method))
+
 
         # lrm
         #smoothing_window_size = int(self.smoothing_window_size.value())
