@@ -113,11 +113,12 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # self.add_endpoint.clicked.connect(self.add_continuum_endpoint)
         # self.remove_endpoint.clicked.connect(self.remove_continuum_endpoint)
 
-        # Clipping
-        self.clipping_lower.valueChanged.connect(lambda i: self.clipping_lower_label.setText('{}'.format(
-            self.wavelengths[i])))
-        self.clipping_upper.valueChanged.connect(lambda i: self.clipping_upper_label.setText('{}'.format(
-            self.wavelengths[i])))
+        # lrm
+        # # Clipping
+        # self.clipping_lower.valueChanged.connect(lambda i: self.clipping_lower_label.setText('{}'.format(
+        #     self.wavelengths[i])))
+        # self.clipping_upper.valueChanged.connect(lambda i: self.clipping_upper_label.setText('{}'.format(
+        #     self.wavelengths[i])))
 
         # #Spectral Smoothing
 
