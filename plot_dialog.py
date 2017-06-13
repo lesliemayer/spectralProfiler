@@ -107,7 +107,7 @@ class PlotDialog(cls_dialog, ui_dialog):
             self.notes.insertPlainText('> The band asymmetry between {} and {} is {}\n'.format(lower,
                                                                                               upper,
                                                                                               asymmetry))
-
+    # lrm : set up the plotting window
     def initmpl(self):
         """
         Initialize the MatPlotLib Figure
@@ -123,14 +123,18 @@ class PlotDialog(cls_dialog, ui_dialog):
 
         # Add a y label - lrm
         self.ax.set_ylabel('Reflectance')
+
+        # lrm : add the plot
         self.mplvl.addWidget(self.canvas)
 
-        # Add the toolbar
+        # Add the bottom toolbar
         self.toolbar = NavigationToolbar(self.canvas, self.mplwindow, coordinates=True)
         self.mplvl.addWidget(self.toolbar)
 
-        self.figure.canvas.mpl_connect('pick_event', self.select_spectra)
+        # lrm : select a particular spectra
+        #self.figure.canvas.mpl_connect('pick_event', self.select_spectra)
 
+        # lrm : Draw everything
         self.canvas.draw()
 
     def inittree(self):
