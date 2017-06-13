@@ -46,7 +46,9 @@ class PlotDialog(cls_dialog, ui_dialog):
         self.band_center_btn.clicked.connect(self.band_center)
         self.band_minima_btn.clicked.connect(self.band_minima)
         self.band_area_btn.clicked.connect(self.band_area)
-        self.band_asymmetry_btn.clicked.connect(self.band_asymmetry)
+
+        # lrm
+        #self.band_asymmetry_btn.clicked.connect(self.band_asymmetry)
 
     def get_endpoints_and_spectra(self):
 
@@ -153,7 +155,7 @@ class PlotDialog(cls_dialog, ui_dialog):
                 parent.appendRow(child)
             self.spectratree.model().appendRow(parent)
 
-    # lrm : not needed
+    # lrm : not needed ----------------------------------------------------------
     # def select_spectra(self, event):
     #     def update_selection():
     #         for i, x in enumerate(self.ax.lines):
@@ -191,6 +193,7 @@ class PlotDialog(cls_dialog, ui_dialog):
     #         self.spectra_context_menu_event(self)
     #
     #     self.canvas.draw()
+    # --------------------------------------------------------------------------------
 
     def spectra_context_menu_event(self, event):
         menu = QtGui.QMenu()
