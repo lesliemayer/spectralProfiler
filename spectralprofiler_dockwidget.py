@@ -122,6 +122,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         # #Spectral Smoothing
 
+        # plugin won't load if this is commented out
         self.plot_selected.clicked.connect(self.plot)
 
 
@@ -129,28 +130,30 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.closingPlugin.emit()
         event.accept()
 
-    def add_continuum_endpoint(self):
-        widget = QtGui.QWidget()
-        hbox = QtGui.QHBoxLayout()
-        hbox.setContentsMargins(0,0,0,0)
-        widget.setLayout(hbox)
+    # lrm - this not needed anymore
+    # def add_continuum_endpoint(self):
+    #     widget = QtGui.QWidget()
+    #     hbox = QtGui.QHBoxLayout()
+    #     hbox.setContentsMargins(0,0,0,0)
+    #     widget.setLayout(hbox)
+    #
+    #     slider = QtGui.QSlider(QtCore.Qt.Horizontal)
+    #     slider.setRange(0, 268)
+    #     label = QtGui.QLabel('{}'.format(self.wavelengths[0]))
+    #     slider.valueChanged.connect(lambda i: label.setText('{}'.format(self.wavelengths[i])))
+    #
+    #     hbox.addWidget(slider)
+    #     hbox.addWidget(label)
+    #
+    #     self.cc_slider_vlb.addWidget(widget)
 
-        slider = QtGui.QSlider(QtCore.Qt.Horizontal)
-        slider.setRange(0, 268)
-        label = QtGui.QLabel('{}'.format(self.wavelengths[0]))
-        slider.valueChanged.connect(lambda i: label.setText('{}'.format(self.wavelengths[i])))
-
-        hbox.addWidget(slider)
-        hbox.addWidget(label)
-
-        self.cc_slider_vlb.addWidget(widget)
-
-    def remove_continuum_endpoint(self):
-        row = self.cc_slider_vlb.count()
-        widget = self.cc_slider_vlb.takeAt(row - 1)
-
-        if widget is not None:
-            widget.widget().deleteLater()
+    # lrm - this not needed anymore
+    # def remove_continuum_endpoint(self):
+    #     row = self.cc_slider_vlb.count()
+    #     widget = self.cc_slider_vlb.takeAt(row - 1)
+    #
+    #     if widget is not None:
+    #         widget.widget().deleteLater()
 
     # This is called when "Plot Selected" button is hit
     def plot(self):
