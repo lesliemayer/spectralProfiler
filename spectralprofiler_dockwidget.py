@@ -144,7 +144,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         if widget is not None:
             widget.widget().deleteLater()
 
-    # This is called when "Plot Selcted" button is hit
+    # This is called when "Plot Selected" button is hit
     def plot(self):
         print("spectralprofiler_dockwidget : plot")
 
@@ -198,6 +198,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         # Create the plot dialog
         dialog = PlotDialog()
+
         dialog.wavelengths = self.wavelengths
         dialog.setWindowTitle('{}'.format(self.window_key))
         self.plot_windows[self.window_key] = dialog
@@ -217,6 +218,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         #     #      print "%d: %s" % (k, attr.toString())
         # --------------------------------------------------
 
+        # The selected sp data :
         selected = v_layer.selectedFeatures()
         d = defaultdict(list)
         for s in selected:
@@ -224,11 +226,17 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
             id = s.attribute('OBSERVATION_ID')
             d[fname].append(id)
 
+        # d is filename and observation numbers
+        # u'SP_2C_02_03860_S136_E3557.spc': [20, 21, 22, 23, 24, 25, 26, 27]
+        print("spectralprofiler_dockwidget : plot : d = {}".format(d))
+
         selected_spectra = {}
 
         for k, obs in d.iteritems():
             selected_spectra[k] = spectra[k].spectra.iloc[obs]
+        print("spectralprofiler_dockwidget : plot : selected_spectra = {}".format(selected_spectra))
         dialog.set_spectra(selected_spectra)
+
         # THIS IS WHERE WE GET THE TKINTER ERROR :
         dialog.plot(continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
                     clipping_lower, clipping_upper, pcorrect)
