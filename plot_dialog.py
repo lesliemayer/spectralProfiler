@@ -153,43 +153,44 @@ class PlotDialog(cls_dialog, ui_dialog):
                 parent.appendRow(child)
             self.spectratree.model().appendRow(parent)
 
-    def select_spectra(self, event):
-        def update_selection():
-            for i, x in enumerate(self.ax.lines):
-                if x != self.selected_line:
-                    if x.get_gid() in [0,1]:
-                        x.set_linewidth(1.0)
-                        x.set_markersize(2.0)
-                    elif x.get_gid() in [4, 5]:
-                        x.set_linewidth(4.0)
-                        x.set_markersize(DEFAULT_MARKER_SIZE)
-                    elif x.get_gid() in [6]:
-                        x.set_alpha(0.25)
-
-        geom = event.artist
-        gid = geom.get_gid()
-        self.selected_line = geom
-        update_selection()
-
-        try:
-            lineidx = self.ax.lines.index(geom)
-        except:
-            return
-
-        if event.mouseevent.button == 1:
-            if gid in [0, 1]:
-                self.ax.lines[lineidx].set_linewidth(2.0)
-                self.ax.lines[lineidx].set_markersize(4.0)
-            elif gid in [4, 5]:
-                self.ax.lines[lineidx].set_linewidth(6.0)
-                self.ax.lines[lineidx].set_markersize(SELECTED_MARKER_SIZE)
-            elif gid in [6]:
-                self.ax.lines[lineidx].set_alpha(0.75)
-
-        elif event.mouseevent.button == 3:
-            self.spectra_context_menu_event(self)
-
-        self.canvas.draw()
+    # lrm : not needed
+    # def select_spectra(self, event):
+    #     def update_selection():
+    #         for i, x in enumerate(self.ax.lines):
+    #             if x != self.selected_line:
+    #                 if x.get_gid() in [0,1]:
+    #                     x.set_linewidth(1.0)
+    #                     x.set_markersize(2.0)
+    #                 elif x.get_gid() in [4, 5]:
+    #                     x.set_linewidth(4.0)
+    #                     x.set_markersize(DEFAULT_MARKER_SIZE)
+    #                 elif x.get_gid() in [6]:
+    #                     x.set_alpha(0.25)
+    #
+    #     geom = event.artist
+    #     gid = geom.get_gid()
+    #     self.selected_line = geom
+    #     update_selection()
+    #
+    #     try:
+    #         lineidx = self.ax.lines.index(geom)
+    #     except:
+    #         return
+    #
+    #     if event.mouseevent.button == 1:
+    #         if gid in [0, 1]:
+    #             self.ax.lines[lineidx].set_linewidth(2.0)
+    #             self.ax.lines[lineidx].set_markersize(4.0)
+    #         elif gid in [4, 5]:
+    #             self.ax.lines[lineidx].set_linewidth(6.0)
+    #             self.ax.lines[lineidx].set_markersize(SELECTED_MARKER_SIZE)
+    #         elif gid in [6]:
+    #             self.ax.lines[lineidx].set_alpha(0.75)
+    #
+    #     elif event.mouseevent.button == 3:
+    #         self.spectra_context_menu_event(self)
+    #
+    #     self.canvas.draw()
 
     def spectra_context_menu_event(self, event):
         menu = QtGui.QMenu()
