@@ -109,9 +109,9 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # self.remove_endpoint.setIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)),
         #                                                       'icons/remove.png')))
 
-
-        self.add_endpoint.clicked.connect(self.add_continuum_endpoint)
-        self.remove_endpoint.clicked.connect(self.remove_continuum_endpoint)
+        # lrm
+        # self.add_endpoint.clicked.connect(self.add_continuum_endpoint)
+        # self.remove_endpoint.clicked.connect(self.remove_continuum_endpoint)
 
         # Clipping
         self.clipping_lower.valueChanged.connect(lambda i: self.clipping_lower_label.setText('{}'.format(
