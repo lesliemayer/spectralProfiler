@@ -125,10 +125,10 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # plugin won't load if this is commented out
         self.plot_selected.clicked.connect(self.plot)
 
-
-    def closeEvent(self, event):
-        self.closingPlugin.emit()
-        event.accept()
+    # lrm  - this doesn't seem to be needed
+    # def closeEvent(self, event):
+    #     self.closingPlugin.emit()
+    #     event.accept()
 
     # lrm - this not needed anymore
     # def add_continuum_endpoint(self):
