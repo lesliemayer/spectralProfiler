@@ -187,12 +187,14 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         clipping_upper = float(1700.)
         print("spectralprofiler_dockwidget : plot : clipping_lower, clipping_upper = {} {}".format(clipping_lower, clipping_upper))
 
-        pcorrect = None
-        for i in range(self.correction_vlb.count()):
-            widget = self.correction_vlb.itemAt(i).widget()
-            if isinstance(widget, QtGui.QRadioButton):
-                if widget.isChecked():
-                    pcorrect = widget.text()
+        # pcorrect = None
+        # for i in range(self.correction_vlb.count()):
+        #     widget = self.correction_vlb.itemAt(i).widget()
+        #     if isinstance(widget, QtGui.QRadioButton):
+        #         if widget.isChecked():
+        #             pcorrect = widget.text()
+        pcorrect = unicode("Highlands")
+        print("spectralprofiler_dockwidget : plot : pcorrect = {}".format(pcorrect))
 
         # Create the plot dialog
         dialog = PlotDialog()
