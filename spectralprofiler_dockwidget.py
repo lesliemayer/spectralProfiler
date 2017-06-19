@@ -125,10 +125,10 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # plugin won't load if this is commented out
         self.plot_selected.clicked.connect(self.plot)
 
-    # lrm  - this doesn't seem to be needed
+    # lrm  - this doesn't seem to be needed  - or does it!!!???
     # def closeEvent(self, event):
-    #     self.closingPlugin.emit()
-    #     event.accept()
+    #      self.closingPlugin.emit()
+    #      event.accept()
 
     # lrm - this not needed anymore
     # def add_continuum_endpoint(self):
@@ -210,7 +210,11 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # Create the plot dialog
         dialog = PlotDialog()
 
+        # lrm : set the dialog wavelengths
         dialog.wavelengths = self.wavelengths
+        #print("spectralprofiler_dockwidget : plot : dialog.wavelengths = {}".format(dialog.wavelengths))
+
+        # Set the title of the window to a number
         dialog.setWindowTitle('{}'.format(self.window_key))
         self.plot_windows[self.window_key] = dialog
         self.window_key += 1
@@ -247,6 +251,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         for k, obs in d.iteritems():
             selected_spectra[k] = spectra[k].spectra.iloc[obs]
         print("spectralprofiler_dockwidget : plot : selected_spectra = {}".format(selected_spectra))
+        # lrm : need this or crashes
         dialog.set_spectra(selected_spectra)
 
         # THIS IS WHERE WE GET THE TKINTER ERROR :

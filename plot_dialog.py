@@ -44,7 +44,11 @@ class PlotDialog(cls_dialog, ui_dialog):
                                                                                                            '}'.format(self.wavelengths[i])))
 
         self.band_center_btn.clicked.connect(self.band_center)
+
+        # lrm  - will get error if comment this out
         self.band_minima_btn.clicked.connect(self.band_minima)
+
+        # lrm  - will get error if comment this out
         self.band_area_btn.clicked.connect(self.band_area)
 
         # lrm
@@ -63,17 +67,20 @@ class PlotDialog(cls_dialog, ui_dialog):
             return lower, upper, yd, offset
 
     def band_center(self):
-        if self.selected_line is not None:
-            lower, upper, yd, offset = self.get_endpoints_and_spectra()
-            (min_idx, min_value), center_fit = analytics.band_center(yd, low_endmember=lower, high_endmember=upper)
-            center_fit.plot(ax=self.ax, color='k', gid=4, picker=5, linewidth=4.0, alpha=0.5)
-            self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
-            self.canvas.draw()
 
-            self.notes.insertPlainText('> The band center between {} and {} is {} at {}\n'.format(lower,
-                                                                                  upper,
-                                                                                      min_value,
-                                                                                      min_idx))
+        # lrm
+        pass
+        # if self.selected_line is not None:
+        #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
+        #     (min_idx, min_value), center_fit = analytics.band_center(yd, low_endmember=lower, high_endmember=upper)
+        #     center_fit.plot(ax=self.ax, color='k', gid=4, picker=5, linewidth=4.0, alpha=0.5)
+        #     self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
+        #     self.canvas.draw()
+        #
+        #     self.notes.insertPlainText('> The band center between {} and {} is {} at {}\n'.format(lower,
+        #                                                                           upper,
+        #                                                                               min_value,
+        #                                                                               min_idx))
 
     def band_minima(self):
         if self.selected_line is not None:
@@ -98,17 +105,19 @@ class PlotDialog(cls_dialog, ui_dialog):
             self.notes.insertPlainText('> The band area between {} and {} is {}\n'.format(lower,
                                                                                            upper,
                                                                                            area))
+    # lrm
+    # def band_asymmetry(self):
+    #     if self.selected_line is not None:
+    #         lower, upper, yd, offset = self.get_endpoints_and_spectra()
+    #         self.band_area()
+    #         asymmetry = analytics.band_asymmetry(yd - offset, low_endmember=lower, high_endmember=upper)
+    #         self.canvas.draw()
+    #
+    #         self.notes.insertPlainText('> The band asymmetry between {} and {} is {}\n'.format(lower,
+    #                                                                                           upper,
+    #                                                                                           asymmetry))
 
-    def band_asymmetry(self):
-        if self.selected_line is not None:
-            lower, upper, yd, offset = self.get_endpoints_and_spectra()
-            self.band_area()
-            asymmetry = analytics.band_asymmetry(yd - offset, low_endmember=lower, high_endmember=upper)
-            self.canvas.draw()
-
-            self.notes.insertPlainText('> The band asymmetry between {} and {} is {}\n'.format(lower,
-                                                                                              upper,
-                                                                                              asymmetry))
+    
     # lrm : set up the plotting window
     def initmpl(self):
         """
