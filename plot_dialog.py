@@ -35,7 +35,8 @@ class PlotDialog(cls_dialog, ui_dialog):
 
         #self.selected_line = None - not needed
 
-        self.annotations = []
+        # self.annotations = []  this is not used : lrm
+
         self.smoother_lookup = {'Box Filter': smoothing.boxcar,
                                 'Gaussian': smoothing.gaussian}
 
