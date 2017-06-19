@@ -29,7 +29,8 @@ class PlotDialog(cls_dialog, ui_dialog):
 
         self.initmpl()
         self.inittree()
-        self.initgui()
+        
+        #self.initgui()  # not needed - lrm
         self.show()
 
         self.selected_line = None
@@ -37,29 +38,29 @@ class PlotDialog(cls_dialog, ui_dialog):
         self.smoother_lookup = {'Box Filter': smoothing.boxcar,
                                 'Gaussian': smoothing.gaussian}
 
-    def initgui(self):
-
-        # lrm
-        # self.endpoint_slider_lower.valueChanged.connect(lambda i: self.endpoint_slider_lower_label.setText('{'
-        #                                                                                                    '}'.format(self.wavelengths[i])))
-
-        # lrm
-        # self.endpoint_slider_upper.valueChanged.connect(lambda i: self.endpoint_slider_upper_label.setText('{'
-        #                                                                                                    '}'.format(self.wavelengths[i])))
-
-        # lrm
-        # self.band_center_btn.clicked.connect(self.band_center)
-
-        # lrm
-        #self.band_minima_btn.clicked.connect(self.band_minima)
-
-        # lrm
-        #self.band_area_btn.clicked.connect(self.band_area)
-
-        # lrm
-        #self.band_asymmetry_btn.clicked.connect(self.band_asymmetry)
-
-        pass  # lrm
+    # def initgui(self):
+    #
+    #     # lrm
+    #     # self.endpoint_slider_lower.valueChanged.connect(lambda i: self.endpoint_slider_lower_label.setText('{'
+    #     #                                                                                                    '}'.format(self.wavelengths[i])))
+    #
+    #     # lrm
+    #     # self.endpoint_slider_upper.valueChanged.connect(lambda i: self.endpoint_slider_upper_label.setText('{'
+    #     #                                                                                                    '}'.format(self.wavelengths[i])))
+    #
+    #     # lrm
+    #     # self.band_center_btn.clicked.connect(self.band_center)
+    #
+    #     # lrm
+    #     #self.band_minima_btn.clicked.connect(self.band_minima)
+    #
+    #     # lrm
+    #     #self.band_area_btn.clicked.connect(self.band_area)
+    #
+    #     # lrm
+    #     #self.band_asymmetry_btn.clicked.connect(self.band_asymmetry)
+    #
+    #     pass  # lrm
 
     # lrm
     # def get_endpoints_and_spectra(self):
