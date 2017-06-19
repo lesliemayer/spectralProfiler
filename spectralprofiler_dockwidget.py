@@ -174,16 +174,17 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         #print("type of correction_method = {}".format(type(correction_method)))
         # smoothing_method = self.smoothing_method.currentText()
         # lrm
-        correction_method = unicode("Linear")
-        #smoothing_method = unicode("Gaussian")
-        smoothing_method = unicode("None")
-        print("spectralprofiler_dockwidget : plot : correction_method = {}".format(correction_method))
-        print("spectralprofiler_dockwidget : plot : smoothing_method = {}".format(smoothing_method))
+        # correction_method = unicode("Linear")
+        # #smoothing_method = unicode("Gaussian")
+        # smoothing_method = unicode("None")
+        #
+        # print("spectralprofiler_dockwidget : plot : correction_method = {}".format(correction_method))
+        # print("spectralprofiler_dockwidget : plot : smoothing_method = {}".format(smoothing_method))
 
 
         # lrm
         #smoothing_window_size = int(self.smoothing_window_size.value())
-        smoothing_window_size = 7
+        #smoothing_window_size = 7
 
 
         #offset = float(self.offset.value())
@@ -257,4 +258,5 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # THIS IS WHERE WE GET THE TKINTER ERROR :
         # dialog.plot(continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
         #             clipping_lower, clipping_upper, pcorrect)
+        # lrm :
         dialog.plot()
