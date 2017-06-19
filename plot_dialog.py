@@ -349,15 +349,18 @@ class PlotDialog(cls_dialog, ui_dialog):
                 #     spectra += (offset + offset_interval)
                 #     offset_interval += offset
 
-                if smoothing_method != 'None':
-                    smooth_func = self.smoother_lookup[smoothing_method]
-                    spectra = smooth_func(spectra, window_size=smoothing_window_size)
+                # lrm : don't smooth
+                # if smoothing_method != 'None':
+                #     smooth_func = self.smoother_lookup[smoothing_method]
+                #     spectra = smooth_func(spectra, window_size=smoothing_window_size)
 
                 print("plot_dialog : plot : Just before spectra.plot")
                 spectra.plot(ax=self.ax, picker=5, gid=0)
 
                 # Custom attr to get the offset as an attribute to the line.
                 setattr(self.ax.lines[-1], 'offset', (offset + offset_interval))
+
+                
         self.ax.grid(True)
         self.canvas.draw()
 
