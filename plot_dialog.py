@@ -234,13 +234,13 @@ class PlotDialog(cls_dialog, ui_dialog):
     #
     #     menu.exec_(self.mapToGlobal(event.pos()))
 
-    def delete_spectra(self):
-        """
-        Remove the selected spectra from the plot.
-        """
-        if self.selected_line is not None:
-            self.ax.lines.remove(self.selected_line)
-            self.canvas.draw()
+    # def delete_spectra(self):
+    #     """
+    #     Remove the selected spectra from the plot.
+    #     """
+    #     if self.selected_line is not None:
+    #         self.ax.lines.remove(self.selected_line)
+    #         self.canvas.draw()
 
     def move_spectra(self):
         if self.selected_line is not None:
