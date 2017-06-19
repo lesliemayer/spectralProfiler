@@ -73,32 +73,6 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QGroupBox" name="correction_group">
-            <property name="title">
-             <string>Photometric Correction</string>
-            </property>
-            <layout class="QHBoxLayout" name="correction_vlb">
-             <item>
-              <widget class="QRadioButton" name="radioButton_2">
-               <property name="text">
-                <string>Highlands</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="radioButton">
-               <property name="text">
-                <string>Mare</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
            <widget class="QGroupBox" name="groupBox_7">
             <property name="title">
              <string>Clipping</string>
