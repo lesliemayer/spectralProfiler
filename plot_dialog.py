@@ -99,16 +99,21 @@ class PlotDialog(cls_dialog, ui_dialog):
         #                                                                               min_idx))
 
     def band_area(self):
-        if self.selected_line is not None:
-            lower, upper, yd, offset = self.get_endpoints_and_spectra()
-            area = analytics.band_area(yd - offset, low_endmember=lower, high_endmember=upper)
-            fill = yd.loc[lower:upper]
-            self.ax.fill_between(fill.index, fill.values, 1.0 + offset, facecolor='b', alpha=0.25, gid=6, picker=5)
-            self.canvas.draw()
 
-            self.notes.insertPlainText('> The band area between {} and {} is {}\n'.format(lower,
-                                                                                           upper,
-                                                                                           area))
+        # lrm
+        pass
+        # if self.selected_line is not None:
+        #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
+        #     area = analytics.band_area(yd - offset, low_endmember=lower, high_endmember=upper)
+        #     fill = yd.loc[lower:upper]
+        #     self.ax.fill_between(fill.index, fill.values, 1.0 + offset, facecolor='b', alpha=0.25, gid=6, picker=5)
+        #     self.canvas.draw()
+        #
+        #     self.notes.insertPlainText('> The band area between {} and {} is {}\n'.format(lower,
+        #                                                                                    upper,
+        #                                                                                    area))
+
+    
     # lrm
     # def band_asymmetry(self):
     #     if self.selected_line is not None:
