@@ -257,16 +257,17 @@ class PlotDialog(cls_dialog, ui_dialog):
     #         self.ax.lines.remove(l)
     #         self.canvas.draw()
 
-    def as_point(self):
-        """
-        Convert the point to a line object
-        """
-        if self.selected_line is not None:
-            l = self.selected_line
-            l.set_linestyle('')
-            l.set_marker('o')
-            l.set_markersize(2)
-            self.canvas.draw()
+    # lrm
+    # def as_point(self):
+    #     """
+    #     Convert the point to a line object
+    #     """
+    #     if self.selected_line is not None:
+    #         l = self.selected_line
+    #         l.set_linestyle('')
+    #         l.set_marker('o')
+    #         l.set_markersize(2)
+    #         self.canvas.draw()
 
     def as_line(self):
         """
