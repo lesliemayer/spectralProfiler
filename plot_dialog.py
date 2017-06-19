@@ -43,9 +43,9 @@ class PlotDialog(cls_dialog, ui_dialog):
         # self.endpoint_slider_lower.valueChanged.connect(lambda i: self.endpoint_slider_lower_label.setText('{'
         #                                                                                                    '}'.format(self.wavelengths[i])))
 
-
-        self.endpoint_slider_upper.valueChanged.connect(lambda i: self.endpoint_slider_upper_label.setText('{'
-                                                                                                           '}'.format(self.wavelengths[i])))
+        # lrm
+        # self.endpoint_slider_upper.valueChanged.connect(lambda i: self.endpoint_slider_upper_label.setText('{'
+        #                                                                                                    '}'.format(self.wavelengths[i])))
 
         # lrm - will get error if comment this out
         self.band_center_btn.clicked.connect(self.band_center)
