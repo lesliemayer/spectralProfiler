@@ -311,17 +311,23 @@ class PlotDialog(cls_dialog, ui_dialog):
     def plot(self, continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
              clipping_lower, clipping_upper, pcorrect=None):
 
-        if pcorrect == 'Mare':
-            key = 'REF2'
-        elif pcorrect == 'Highlands':
-            key = 'REF1'
-        else:
-            key = 'REF'
+        # lrm
+        # if pcorrect == 'Mare':
+        #     key = 'REF2'
+        # elif pcorrect == 'Highlands':
+        #     key = 'REF1'
+        # else:
+        #     key = 'REF'  - this will make it crash : lrm
+
+        # lrm
+        key = 'REF1'
+
 
         # offset_interval = 0  not needed : lrm
 
         for fname, panel in self.data.iteritems():
             for k, df in panel.iteritems():
+
                 if key in df.columns:
                     spectra = df[key]
                 else:
