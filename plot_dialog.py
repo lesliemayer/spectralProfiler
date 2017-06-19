@@ -51,7 +51,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         # self.band_center_btn.clicked.connect(self.band_center)
 
         # lrm  - will get error if comment this out
-        self.band_minima_btn.clicked.connect(self.band_minima)
+        #self.band_minima_btn.clicked.connect(self.band_minima)
 
         # lrm  - will get error if comment this out
         self.band_area_btn.clicked.connect(self.band_area)
