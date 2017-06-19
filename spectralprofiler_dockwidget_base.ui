@@ -73,63 +73,6 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QGroupBox" name="groupBox_7">
-            <property name="title">
-             <string>Clipping</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_8">
-             <item row="1" column="1">
-              <widget class="QSlider" name="clipping_upper">
-               <property name="maximum">
-                <number>268</number>
-               </property>
-               <property name="value">
-                <number>268</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_10">
-               <property name="text">
-                <string>Upper Bound</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSlider" name="clipping_lower">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QLabel" name="clipping_lower_label">
-               <property name="text">
-                <string>512.6</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_11">
-               <property name="text">
-                <string>Lower Bound</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QLabel" name="clipping_upper_label">
-               <property name="text">
-                <string>2587.9</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
            <widget class="QGroupBox" name="groupBox_8">
             <property name="title">
              <string>Spectral Smoothing</string>
