@@ -113,7 +113,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         #                                                                                    upper,
         #                                                                                    area))
 
-    
+
     # lrm
     # def band_asymmetry(self):
     #     if self.selected_line is not None:
@@ -157,13 +157,14 @@ class PlotDialog(cls_dialog, ui_dialog):
         # lrm : Draw everything
         self.canvas.draw()
 
-    def inittree(self):
+    def inittree(self):  # is this the observation tree view in box on the right?
         """
         Initialize the tree view
         """
         self.spectratree.setModel(QtGui.QStandardItemModel())
 
     def set_spectra(self, spectra):
+
         self.data = spectra
         for k, obs in self.data.iteritems():
             parent = QtGui.QStandardItem(k)
@@ -213,24 +214,25 @@ class PlotDialog(cls_dialog, ui_dialog):
     #     self.canvas.draw()
     # --------------------------------------------------------------------------------
 
-    def spectra_context_menu_event(self, event):
-        menu = QtGui.QMenu()
-        try:
-            gid = self.selected_line.get_gid()
-        except: return
-
-        if gid in [0, 5, 10]:
-            delsp = menu.addAction('Delete Selected Spectra', self.delete_spectra)
-            movesp = menu.addAction('Move Spectra', self.move_spectra)
-            aspoint = menu.addAction('Show as Point', self.as_point)
-            asline = menu.addAction('Show as Line', self.as_line)
-            addsmooth = menu.addAction('Add Smoothed Spectra', self.smooth_spectra)
-            ccorrect = menu.addAction('Continuum Correct', self.continuum_correct_spectra)
-
-        if gid in [4]:
-            delsp = menu.addAction('Delete Parameter', self.delete_spectra)
-
-        menu.exec_(self.mapToGlobal(event.pos()))
+    # lrm commented out
+    # def spectra_context_menu_event(self, event):
+    #     menu = QtGui.QMenu()
+    #     try:
+    #         gid = self.selected_line.get_gid()
+    #     except: return
+    #
+    #     if gid in [0, 5, 10]:
+    #         delsp = menu.addAction('Delete Selected Spectra', self.delete_spectra)
+    #         movesp = menu.addAction('Move Spectra', self.move_spectra)
+    #         aspoint = menu.addAction('Show as Point', self.as_point)
+    #         asline = menu.addAction('Show as Line', self.as_line)
+    #         addsmooth = menu.addAction('Add Smoothed Spectra', self.smooth_spectra)
+    #         ccorrect = menu.addAction('Continuum Correct', self.continuum_correct_spectra)
+    #
+    #     if gid in [4]:
+    #         delsp = menu.addAction('Delete Parameter', self.delete_spectra)
+    #
+    #     menu.exec_(self.mapToGlobal(event.pos()))
 
     def delete_spectra(self):
         """
