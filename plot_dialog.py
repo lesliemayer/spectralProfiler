@@ -279,18 +279,18 @@ class PlotDialog(cls_dialog, ui_dialog):
     #         l.set_marker('')
     #         self.canvas.draw()
 
-    def smooth_spectra(self):
-        if self.selected_line is not None:
-            l = self.selected_line
-            xd = l.get_xdata()
-            yd = pd.Series(l.get_ydata(), index=xd)
-            color = l.get_color()
-            smooth_func = self.smoother_lookup[self.smooth_method.currentText()]
-            window = int(self.smooth_window.value())
-
-            smoothed = smooth_func(yd, window_size=window)
-
-            self.ax.plot(xd, smoothed, color=color, picker=5, gid=5)
+    # def smooth_spectra(self):
+    #     if self.selected_line is not None:
+    #         l = self.selected_line
+    #         xd = l.get_xdata()
+    #         yd = pd.Series(l.get_ydata(), index=xd)
+    #         color = l.get_color()
+    #         smooth_func = self.smoother_lookup[self.smooth_method.currentText()]
+    #         window = int(self.smooth_window.value())
+    #
+    #         smoothed = smooth_func(yd, window_size=window)
+    #
+    #         self.ax.plot(xd, smoothed, color=color, picker=5, gid=5)
 
     def continuum_correct_spectra(self):
         pass
