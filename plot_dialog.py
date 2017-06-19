@@ -55,17 +55,18 @@ class PlotDialog(cls_dialog, ui_dialog):
         # lrm
         #self.band_asymmetry_btn.clicked.connect(self.band_asymmetry)
 
-    def get_endpoints_and_spectra(self):
-
-        if self.selected_line:
-            lower = float(self.endpoint_slider_lower_label.text())
-            upper = float(self.endpoint_slider_upper_label.text())
-
-            l = self.selected_line
-            xd = l.get_xdata()
-            yd = pd.Series(l.get_ydata(), index=xd)
-            offset = l.offset
-            return lower, upper, yd, offset
+    # lrm
+    # def get_endpoints_and_spectra(self):
+    #
+    #     if self.selected_line:
+    #         lower = float(self.endpoint_slider_lower_label.text())
+    #         upper = float(self.endpoint_slider_upper_label.text())
+    #
+    #         l = self.selected_line
+    #         xd = l.get_xdata()
+    #         yd = pd.Series(l.get_ydata(), index=xd)
+    #         offset = l.offset
+    #         return lower, upper, yd, offset
 
     def band_center(self):
 
@@ -137,8 +138,10 @@ class PlotDialog(cls_dialog, ui_dialog):
 
         # Add a title - lrm
         self.ax.set_title("This is the title")
-        self.ax.grid(True)
+        self.ax.grid(True)  # turn on the grid
         self.canvas = FigureCanvas(self.figure)
+
+        # Add an x label
         self.ax.set_xlabel('Wavelength (nm)')
 
         # Add a y label - lrm
@@ -163,6 +166,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         """
         self.spectratree.setModel(QtGui.QStandardItemModel())
 
+    # lrm : get the spectrum data??
     def set_spectra(self, spectra):
 
         self.data = spectra
