@@ -79,21 +79,21 @@ class PlotDialog(cls_dialog, ui_dialog):
     #         offset = l.offset
     #         return lower, upper, yd, offset
 
-    def band_center(self):
-
-        # lrm
-        pass
-        # if self.selected_line is not None:
-        #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
-        #     (min_idx, min_value), center_fit = analytics.band_center(yd, low_endmember=lower, high_endmember=upper)
-        #     center_fit.plot(ax=self.ax, color='k', gid=4, picker=5, linewidth=4.0, alpha=0.5)
-        #     self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
-        #     self.canvas.draw()
-        #
-        #     self.notes.insertPlainText('> The band center between {} and {} is {} at {}\n'.format(lower,
-        #                                                                           upper,
-        #                                                                               min_value,
-        #                                                                               min_idx))
+    # def band_center(self):
+    #
+    #     # lrm
+    #     pass
+    #     # if self.selected_line is not None:
+    #     #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
+    #     #     (min_idx, min_value), center_fit = analytics.band_center(yd, low_endmember=lower, high_endmember=upper)
+    #     #     center_fit.plot(ax=self.ax, color='k', gid=4, picker=5, linewidth=4.0, alpha=0.5)
+    #     #     self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
+    #     #     self.canvas.draw()
+    #     #
+    #     #     self.notes.insertPlainText('> The band center between {} and {} is {} at {}\n'.format(lower,
+    #     #                                                                           upper,
+    #     #                                                                               min_value,
+    #     #                                                                               min_idx))
 
     def band_minima(self):
 
