@@ -327,13 +327,14 @@ class PlotDialog(cls_dialog, ui_dialog):
                 #    df['CC'] = spectra
                 df['CC'] = spectra
 
-                # don't do the mask
+                # lrm : don't do the mask
                 # mask = (df.index >= clipping_lower) & (df.index <= clipping_upper)
                 # spectra = df['CC'][mask]
 
-                if offset:
-                    spectra += (offset + offset_interval)
-                    offset_interval += offset
+                # lrm : don't do the offset
+                # if offset:
+                #     spectra += (offset + offset_interval)
+                #     offset_interval += offset
 
                 if smoothing_method != 'None':
                     smooth_func = self.smoother_lookup[smoothing_method]
