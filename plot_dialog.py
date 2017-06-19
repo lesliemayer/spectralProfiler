@@ -29,11 +29,12 @@ class PlotDialog(cls_dialog, ui_dialog):
 
         self.initmpl()
         self.inittree()
-        
+
         #self.initgui()  # not needed - lrm
         self.show()
 
-        self.selected_line = None
+        #self.selected_line = None - not needed
+
         self.annotations = []
         self.smoother_lookup = {'Box Filter': smoothing.boxcar,
                                 'Gaussian': smoothing.gaussian}
