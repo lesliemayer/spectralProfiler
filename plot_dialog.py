@@ -8,12 +8,12 @@ from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 
 from matplotlib.figure import Figure
-import pandas as pd
 
-
-from pysat.spectral import continuum
-from pysat.spectral import smoothing
-from pysat.spectral import analytics
+# lrm :
+# import pandas as pd
+# from pysat.spectral import continuum
+# from pysat.spectral import smoothing
+# from pysat.spectral import analytics
 
 base = os.path.dirname(os.path.abspath(__file__))
 ui_dialog, cls_dialog = uic.loadUiType(os.path.join(base, 'ui/plot_dialog.ui'))
