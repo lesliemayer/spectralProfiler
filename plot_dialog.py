@@ -38,8 +38,9 @@ class PlotDialog(cls_dialog, ui_dialog):
 
         # self.annotations = []  this is not used : lrm
 
-        self.smoother_lookup = {'Box Filter': smoothing.boxcar,
-                                'Gaussian': smoothing.gaussian}
+        # lrm
+        # self.smoother_lookup = {'Box Filter': smoothing.boxcar,
+        #                         'Gaussian': smoothing.gaussian}
 
     # def initgui(self):
     #
