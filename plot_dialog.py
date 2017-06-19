@@ -50,14 +50,16 @@ class PlotDialog(cls_dialog, ui_dialog):
         # lrm
         # self.band_center_btn.clicked.connect(self.band_center)
 
-        # lrm  - will get error if comment this out
+        # lrm
         #self.band_minima_btn.clicked.connect(self.band_minima)
 
-        # lrm  - will get error if comment this out
-        self.band_area_btn.clicked.connect(self.band_area)
+        # lrm
+        #self.band_area_btn.clicked.connect(self.band_area)
 
         # lrm
         #self.band_asymmetry_btn.clicked.connect(self.band_asymmetry)
+
+        pass  # lrm
 
     # lrm
     # def get_endpoints_and_spectra(self):
