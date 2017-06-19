@@ -318,12 +318,14 @@ class PlotDialog(cls_dialog, ui_dialog):
 
                 #print "plot_dialog : plot : spectra = {}".format(spectra)
 
-                if correction_method != 'None':
-                    df['CC'], df['Continuum'] = continuum.continuum_correct(spectra,
-                                                                            nodes=continuum_endpoints,
-                                                                            method=correction_method.lower())
-                else:
-                    df['CC'] = spectra
+                # lrm - don't do any correction
+                # if correction_method != 'None':
+                #     df['CC'], df['Continuum'] = continuum.continuum_correct(spectra,
+                #                                                             nodes=continuum_endpoints,
+                #                                                             method=correction_method.lower())
+                # else:
+                #    df['CC'] = spectra
+                df['CC'] = spectra
 
                 mask = (df.index >= clipping_lower) & (df.index <= clipping_upper)
                 spectra = df['CC'][mask]
