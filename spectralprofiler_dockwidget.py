@@ -255,5 +255,6 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         dialog.set_spectra(selected_spectra)
 
         # THIS IS WHERE WE GET THE TKINTER ERROR :
-        dialog.plot(continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
-                    clipping_lower, clipping_upper, pcorrect)
+        # dialog.plot(continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
+        #             clipping_lower, clipping_upper, pcorrect)
+        dialog.plot()

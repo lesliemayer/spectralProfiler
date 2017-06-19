@@ -311,8 +311,9 @@ class PlotDialog(cls_dialog, ui_dialog):
     # def continuum_correct_spectra(self):
     #     pass
 
-    def plot(self, continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
-             clipping_lower, clipping_upper, pcorrect=None):
+    # def plot(self, continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
+    #          clipping_lower, clipping_upper, pcorrect=None):
+    def plot(self):
 
         # lrm
         # if pcorrect == 'Mare':
