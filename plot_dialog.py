@@ -18,8 +18,9 @@ from pysat.spectral import analytics
 base = os.path.dirname(os.path.abspath(__file__))
 ui_dialog, cls_dialog = uic.loadUiType(os.path.join(base, 'ui/plot_dialog.ui'))
 
-DEFAULT_MARKER_SIZE = 10
-SELECTED_MARKER_SIZE = 15
+# lrm :
+# DEFAULT_MARKER_SIZE = 10
+# SELECTED_MARKER_SIZE = 15
 
 class PlotDialog(cls_dialog, ui_dialog):
 
