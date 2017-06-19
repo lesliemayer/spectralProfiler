@@ -43,6 +43,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         self.endpoint_slider_upper.valueChanged.connect(lambda i: self.endpoint_slider_upper_label.setText('{'
                                                                                                            '}'.format(self.wavelengths[i])))
 
+        # lrm - will get error if comment this out
         self.band_center_btn.clicked.connect(self.band_center)
 
         # lrm  - will get error if comment this out
@@ -83,16 +84,19 @@ class PlotDialog(cls_dialog, ui_dialog):
         #                                                                               min_idx))
 
     def band_minima(self):
-        if self.selected_line is not None:
-            lower, upper, yd, offset = self.get_endpoints_and_spectra()
-            min_idx, min_value = analytics.band_minima(yd, low_endmember=lower, high_endmember=upper)
-            self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
-            self.canvas.draw()
 
-            self.notes.insertPlainText('> The band minima between {} and {} is {} at {}\n'.format(lower,
-                                                                                                  upper,
-                                                                                      min_value,
-                                                                                      min_idx))
+        # lrm
+        pass
+        # if self.selected_line is not None:
+        #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
+        #     min_idx, min_value = analytics.band_minima(yd, low_endmember=lower, high_endmember=upper)
+        #     self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
+        #     self.canvas.draw()
+        #
+        #     self.notes.insertPlainText('> The band minima between {} and {} is {} at {}\n'.format(lower,
+        #                                                                                           upper,
+        #                                                                               min_value,
+        #                                                                               min_idx))
 
     def band_area(self):
         if self.selected_line is not None:
