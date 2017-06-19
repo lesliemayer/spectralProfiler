@@ -95,35 +95,35 @@ class PlotDialog(cls_dialog, ui_dialog):
     #     #                                                                               min_value,
     #     #                                                                               min_idx))
 
-    def band_minima(self):
-
-        # lrm
-        pass
-        # if self.selected_line is not None:
-        #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
-        #     min_idx, min_value = analytics.band_minima(yd, low_endmember=lower, high_endmember=upper)
-        #     self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
-        #     self.canvas.draw()
-        #
-        #     self.notes.insertPlainText('> The band minima between {} and {} is {} at {}\n'.format(lower,
-        #                                                                                           upper,
-        #                                                                               min_value,
-        #                                                                               min_idx))
-
-    def band_area(self):
-
-        # lrm
-        pass
-        # if self.selected_line is not None:
-        #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
-        #     area = analytics.band_area(yd - offset, low_endmember=lower, high_endmember=upper)
-        #     fill = yd.loc[lower:upper]
-        #     self.ax.fill_between(fill.index, fill.values, 1.0 + offset, facecolor='b', alpha=0.25, gid=6, picker=5)
-        #     self.canvas.draw()
-        #
-        #     self.notes.insertPlainText('> The band area between {} and {} is {}\n'.format(lower,
-        #                                                                                    upper,
-        #                                                                                    area))
+    # def band_minima(self):
+    #
+    #     # lrm
+    #     pass
+    #     # if self.selected_line is not None:
+    #     #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
+    #     #     min_idx, min_value = analytics.band_minima(yd, low_endmember=lower, high_endmember=upper)
+    #     #     self.ax.plot(min_idx, min_value, marker='*', markersize=DEFAULT_MARKER_SIZE, color='k', gid=3, picker=5)
+    #     #     self.canvas.draw()
+    #     #
+    #     #     self.notes.insertPlainText('> The band minima between {} and {} is {} at {}\n'.format(lower,
+    #     #                                                                                           upper,
+    #     #                                                                               min_value,
+    #     #                                                                               min_idx))
+    #
+    # def band_area(self):
+    #
+    #     # lrm
+    #     pass
+    #     # if self.selected_line is not None:
+    #     #     lower, upper, yd, offset = self.get_endpoints_and_spectra()
+    #     #     area = analytics.band_area(yd - offset, low_endmember=lower, high_endmember=upper)
+    #     #     fill = yd.loc[lower:upper]
+    #     #     self.ax.fill_between(fill.index, fill.values, 1.0 + offset, facecolor='b', alpha=0.25, gid=6, picker=5)
+    #     #     self.canvas.draw()
+    #     #
+    #     #     self.notes.insertPlainText('> The band area between {} and {} is {}\n'.format(lower,
+    #     #                                                                                    upper,
+    #     #                                                                                    area))
 
 
     # lrm
