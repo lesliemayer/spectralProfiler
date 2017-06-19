@@ -358,9 +358,10 @@ class PlotDialog(cls_dialog, ui_dialog):
                 spectra.plot(ax=self.ax, picker=5, gid=0)
 
                 # Custom attr to get the offset as an attribute to the line.
-                setattr(self.ax.lines[-1], 'offset', (offset + offset_interval))
+                # lrm
+                #setattr(self.ax.lines[-1], 'offset', (offset + offset_interval))
 
-                
+
         self.ax.grid(True)
         self.canvas.draw()
 
