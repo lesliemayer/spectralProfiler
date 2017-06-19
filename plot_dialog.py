@@ -327,8 +327,9 @@ class PlotDialog(cls_dialog, ui_dialog):
                 #    df['CC'] = spectra
                 df['CC'] = spectra
 
-                mask = (df.index >= clipping_lower) & (df.index <= clipping_upper)
-                spectra = df['CC'][mask]
+                # don't do the mask
+                # mask = (df.index >= clipping_lower) & (df.index <= clipping_upper)
+                # spectra = df['CC'][mask]
 
                 if offset:
                     spectra += (offset + offset_interval)
