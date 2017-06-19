@@ -269,15 +269,15 @@ class PlotDialog(cls_dialog, ui_dialog):
     #         l.set_markersize(2)
     #         self.canvas.draw()
 
-    def as_line(self):
-        """
-        Convert the line to a point object
-        """
-        if self.selected_line is not None:
-            l = self.selected_line
-            l.set_linestyle('-')
-            l.set_marker('')
-            self.canvas.draw()
+    # def as_line(self):
+    #     """
+    #     Convert the line to a point object
+    #     """
+    #     if self.selected_line is not None:
+    #         l = self.selected_line
+    #         l.set_linestyle('-')
+    #         l.set_marker('')
+    #         self.canvas.draw()
 
     def smooth_spectra(self):
         if self.selected_line is not None:
