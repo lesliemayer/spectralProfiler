@@ -320,7 +320,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         #     key = 'REF'  - this will make it crash : lrm
 
         # lrm
-        key = 'REF1'
+        key = 'REF1'  # use RAW, REF1, REF2m QA  spectral data
 
 
         # offset_interval = 0  not needed : lrm
@@ -328,10 +328,16 @@ class PlotDialog(cls_dialog, ui_dialog):
         for fname, panel in self.data.iteritems():
             for k, df in panel.iteritems():
 
-                if key in df.columns:
-                    spectra = df[key]
-                else:
-                    spectra = df['REF']
+                print("plot_dialog : plot : k, df = {} {}".format(k,df))
+
+                # lrm
+                # if key in df.columns:
+                #     spectra = df[key]
+                # else:
+                #     spectra = df['REF']
+
+                # lrm
+                spectra = df[key]
 
                 # lrm
 
