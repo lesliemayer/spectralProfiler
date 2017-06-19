@@ -189,15 +189,15 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         #offset = float(self.offset.value())
         #print("spectralprofiler_dockwidget : plot : offset = {}".format(offset))
-        offset = float(0.)  # lrm
-        print("spectralprofiler_dockwidget : plot : offset = {}".format(offset))
-
-        # The plotting x-axis range
-        # clipping_lower = float(self.clipping_lower_label.text())
-        # clipping_upper = float(self.clipping_upper_label.text())
-        clipping_lower = float(500.)
-        clipping_upper = float(1700.)
-        print("spectralprofiler_dockwidget : plot : clipping_lower, clipping_upper = {} {}".format(clipping_lower, clipping_upper))
+        # offset = float(0.)  # lrm
+        # print("spectralprofiler_dockwidget : plot : offset = {}".format(offset))
+        #
+        # # The plotting x-axis range
+        # # clipping_lower = float(self.clipping_lower_label.text())
+        # # clipping_upper = float(self.clipping_upper_label.text())
+        # clipping_lower = float(500.)
+        # clipping_upper = float(1700.)
+        # print("spectralprofiler_dockwidget : plot : clipping_lower, clipping_upper = {} {}".format(clipping_lower, clipping_upper))
 
         # pcorrect = None
         # for i in range(self.correction_vlb.count()):
@@ -205,8 +205,8 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         #     if isinstance(widget, QtGui.QRadioButton):
         #         if widget.isChecked():
         #             pcorrect = widget.text()
-        pcorrect = unicode("Highlands")
-        print("spectralprofiler_dockwidget : plot : pcorrect = {}".format(pcorrect))
+        # pcorrect = unicode("Highlands")
+        # print("spectralprofiler_dockwidget : plot : pcorrect = {}".format(pcorrect))
 
         # Create the plot dialog
         dialog = PlotDialog()
