@@ -318,7 +318,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         else:
             key = 'REF'
 
-        offset_interval = 0
+        # offset_interval = 0  not needed : lrm
 
         for fname, panel in self.data.iteritems():
             for k, df in panel.iteritems():
