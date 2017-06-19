@@ -307,8 +307,9 @@ class PlotDialog(cls_dialog, ui_dialog):
     #
     #         self.ax.plot(xd, smoothed, color=color, picker=5, gid=5)
 
-    def continuum_correct_spectra(self):
-        pass
+    # lrm :
+    # def continuum_correct_spectra(self):
+    #     pass
 
     def plot(self, continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
              clipping_lower, clipping_upper, pcorrect=None):
