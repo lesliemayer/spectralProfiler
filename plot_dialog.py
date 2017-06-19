@@ -234,6 +234,7 @@ class PlotDialog(cls_dialog, ui_dialog):
     #
     #     menu.exec_(self.mapToGlobal(event.pos()))
 
+    # lrm
     # def delete_spectra(self):
     #     """
     #     Remove the selected spectra from the plot.
@@ -242,18 +243,19 @@ class PlotDialog(cls_dialog, ui_dialog):
     #         self.ax.lines.remove(self.selected_line)
     #         self.canvas.draw()
 
-    def move_spectra(self):
-        if self.selected_line is not None:
-            l = self.selected_line
-            offset = float(self.offset.value())
-            yd = l.get_ydata() + offset
-            self.ax.plot(l.get_xdata(),
-                         yd,
-                         color=l.get_color(),
-                         picker=l.get_picker(),
-                         label=l.get_label())
-            self.ax.lines.remove(l)
-            self.canvas.draw()
+    # lrm
+    # def move_spectra(self):
+    #     if self.selected_line is not None:
+    #         l = self.selected_line
+    #         offset = float(self.offset.value())
+    #         yd = l.get_ydata() + offset
+    #         self.ax.plot(l.get_xdata(),
+    #                      yd,
+    #                      color=l.get_color(),
+    #                      picker=l.get_picker(),
+    #                      label=l.get_label())
+    #         self.ax.lines.remove(l)
+    #         self.canvas.draw()
 
     def as_point(self):
         """
