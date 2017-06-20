@@ -16,6 +16,8 @@ from matplotlib.figure import Figure
 # from pysat.spectral import analytics
 
 base = os.path.dirname(os.path.abspath(__file__))
+
+# the dialog box for the plotting window (not the main one)
 ui_dialog, cls_dialog = uic.loadUiType(os.path.join(base, 'ui/plot_dialog.ui'))
 
 # lrm :
@@ -177,7 +179,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         """
         self.spectratree.setModel(QtGui.QStandardItemModel())
 
-    # lrm : get the spectrum data??
+    # lrm : get the spectrum data??  *** or set the spectrum data !!!!
     def set_spectra(self, spectra):
 
         self.data = spectra
@@ -324,7 +326,7 @@ class PlotDialog(cls_dialog, ui_dialog):
         #     key = 'REF'  - this will make it crash : lrm
 
         # lrm
-        key = 'REF1'  # use RAW, REF1, REF2m QA  spectral data
+        key = 'REF1'  # use RAW, REF1, REF2, or QA  spectral data
 
 
         # offset_interval = 0  not needed : lrm
@@ -334,14 +336,14 @@ class PlotDialog(cls_dialog, ui_dialog):
 
                 print("plot_dialog : plot : k, df = {} {}".format(k,df))
 
-                # lrm
-                # if key in df.columns:
-                #     spectra = df[key]
-                # else:
-                #     spectra = df['REF']
+                # lrm - this is necessary
+                if key in df.columns:
+                     spectra = df[key]
+                else:
+                     spectra = df['REF']
 
                 # lrm
-                spectra = df[key]
+                #spectra = df[key]
 
                 # lrm
 
