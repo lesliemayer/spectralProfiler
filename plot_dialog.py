@@ -342,12 +342,15 @@ class PlotDialog(cls_dialog, ui_dialog):
                 else:
                      spectra = df['REF']
 
-                # lrm
+                # lrm  - this might crash if key doesn't exist
                 #spectra = df[key]
 
-                # lrm
+                print("plot_dialog : plot : spectra = {}".format(spectra))
 
-                #print "plot_dialog : plot : spectra = {}".format(spectra)
+                # multiply dictionary df keys by .0001 as done in sp_extract :
+                # Multiply every value in my_dict by 2
+                for key in df:
+                    df[key] *= .0001
 
                 # lrm - don't do any correction
                 # if correction_method != 'None':
