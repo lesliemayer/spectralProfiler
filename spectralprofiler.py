@@ -307,6 +307,7 @@ class SpectralProfiler:
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dockwidget)
             self.dockwidget.show()
 
+    # LRM : read the spectral data from the input file
     def openspc(self):
         fpaths = QtGui.QFileDialog.getOpenFileNames(self.dockwidget, 'Open Spectral Profiler', '*.spc')
 
@@ -317,6 +318,11 @@ class SpectralProfiler:
             else:
                 spectra = sp.Spectral_Profiler(fpath)
                 self.spectra[fname] = spectra
+
+                # lrm
+                print("SpectralProfiler : openspc : spectra : {}".format(self.spectra[fname]) )
+
+
             self.draw_observations(fname)
 
     def draw_observations(self, fname):
