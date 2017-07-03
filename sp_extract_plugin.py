@@ -294,8 +294,15 @@ class SP_EXTRACT:
         #elf.wv_array, rad_array, ref_array, angles = self.openspc(self.input_data, self.save)  # lrm
         self.wv_array = self.spectra.index  # lrm this is ok   lrm
         #ref_array = np.array([self.wv_array, self.spectra.values])  # lrm
-        ref_array = self.spectra.as_matrix()
+        #tmp_array = self.spectra.as_matrix()
         #ref_array = np.array([(1.5, 2, 3), (4, 5, 6)])
+
+
+        print("before setting ref_array **")
+
+        # set obs 0 ref array (only need one obs)
+        ref_array = np.array([(self.spectra.values)])
+
 
         logging.debug("sp_extract : make_plots :")
         logging.debug("sp_extract : make_plots : self.spectra.index = %s", self.spectra.index)
@@ -303,6 +310,7 @@ class SP_EXTRACT:
         logging.debug("sp_extract : make_plots : self.wv_array = %s", self.wv_array)
         logging.debug(" ")
         logging.debug("sp_extract : make_plots : ref_array.shape) = %s", ref_array.shape)
+        logging.debug("sp_extract : make_plots : ref_array[0,:] = %s", ref_array[0,:] )
         logging.debug("sp_extract : make_plots : ref_array = %s", ref_array)
 
 
