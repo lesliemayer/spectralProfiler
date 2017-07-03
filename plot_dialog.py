@@ -9,6 +9,9 @@ from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as Navigatio
 
 from matplotlib.figure import Figure
 
+#from sp_extract import clean_data
+from sp_extract_plugin import SP_EXTRACT
+
 # lrm :
 # import pandas as pd
 # from pysat.spectral import continuum
@@ -147,31 +150,34 @@ class PlotDialog(cls_dialog, ui_dialog):
         Initialize the MatPlotLib Figure
         """
         self.figure = Figure()
-        self.ax = self.figure.add_subplot(111)
 
-        # Add a title - lrm
-        self.ax.set_title("This is the title")
-        self.ax.grid(True)  # turn on the grid
-        self.canvas = FigureCanvas(self.figure)
+        # lrm
+        # self.ax = self.figure.add_subplot(111)
+        #
+        # # Add a title - lrm
+        # self.ax.set_title("This is the title")
+        # self.ax.grid(True)  # turn on the grid
+        #self.canvas = FigureCanvas(self.figure)
+        #
+        # # Add an x label
+        # self.ax.set_xlabel('Wavelength (nm)')
+        #
+        # # Add a y label - lrm
+        # self.ax.set_ylabel('Reflectance')
 
-        # Add an x label
-        self.ax.set_xlabel('Wavelength (nm)')
-
-        # Add a y label - lrm
-        self.ax.set_ylabel('Reflectance')
 
         # lrm : add the plot
-        self.mplvl.addWidget(self.canvas)
-
-        # Add the bottom toolbar
-        self.toolbar = NavigationToolbar(self.canvas, self.mplwindow, coordinates=True)
-        self.mplvl.addWidget(self.toolbar)
-
-        # lrm : select a particular spectra
-        #self.figure.canvas.mpl_connect('pick_event', self.select_spectra)
-
-        # lrm : Draw everything
-        self.canvas.draw()
+        # self.mplvl.addWidget(self.canvas)
+        #
+        # # Add the bottom toolbar
+        # self.toolbar = NavigationToolbar(self.canvas, self.mplwindow, coordinates=True)
+        # self.mplvl.addWidget(self.toolbar)
+        #
+        # # lrm : select a particular spectra
+        # #self.figure.canvas.mpl_connect('pick_event', self.select_spectra)
+        #
+        # # lrm : Draw everything
+        # self.canvas.draw()
 
     def inittree(self):  # is this the observation tree view in box on the right?
         """
@@ -348,9 +354,9 @@ class PlotDialog(cls_dialog, ui_dialog):
                 print("plot_dialog : plot : spectra = {}".format(spectra))
 
                 # multiply dictionary df keys by .0001 as done in sp_extract :
-                # Multiply every value in my_dict by 2
-                for key in df:
-                    df[key] *= .0001
+                # Multiply every value in my_dict by 2  - DON'T DO THIS,  DO IN SP_EXTRACT
+                # for key in df:
+                #     df[key] *= .0001
 
                 # lrm - don't do any correction
                 # if correction_method != 'None':
@@ -375,14 +381,22 @@ class PlotDialog(cls_dialog, ui_dialog):
                 #     smooth_func = self.smoother_lookup[smoothing_method]
                 #     spectra = smooth_func(spectra, window_size=smoothing_window_size)
 
-                print("plot_dialog : plot : Just before spectra.plot")
-                spectra.plot(ax=self.ax, picker=5, gid=0)
+                #print("plot_dialog : plot : Just before spectra.plot")
+                #spectra.plot(ax=self.ax, picker=5, gid=0)
+
+                # NEED TO PASS OBSERVATIO DATA TO THE SP_EXTRACT PLOTTING CODE
+                # DO THRU __init__???
+
+                spectraPlot = SP_EXTRACT(spectra)
+                spectraPlot.make_plots()
 
                 # Custom attr to get the offset as an attribute to the line.
                 # lrm
                 #setattr(self.ax.lines[-1], 'offset', (offset + offset_interval))
 
+        # lrm
+        #self.ax.grid(True)
 
-        self.ax.grid(True)
+
         self.canvas.draw()
 

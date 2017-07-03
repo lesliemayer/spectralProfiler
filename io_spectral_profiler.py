@@ -5,6 +5,8 @@ import numpy as np
 
 from utils import find_in_dict
 
+import logging
+
 class Spectral_Profiler(object):
 
     """
@@ -24,7 +26,9 @@ class Spectral_Profiler(object):
               with key as the spectra index and value as the start byte offset
     """
 
-    def __init__(self, input_data, cleaned=True, qa_threshold=2000):
+    #def __init__(self, input_data, cleaned=True, qa_threshold=2000):
+    # lrm - so I get all the data
+    def __init__(self, input_data, cleaned=False, qa_threshold=99999999999999):
         """
         Read the .spc file, parse the label, and extract the spectra
 
@@ -45,6 +49,9 @@ class Spectral_Profiler(object):
                        if cleaned is True.
         """
 
+        print("io_spectral_profiler :__init__ : input_data = {}".format(input_data))
+        logging.debug("io_spectral_profiler :__init__ : input_data = %s", input_data)
+
         label_dtype_map = {'IEEE_REAL':'f',
                         'MSB_INTEGER':'i',
                         'MSB_UNSIGNED_INTEGER':'u'}
@@ -53,6 +60,8 @@ class Spectral_Profiler(object):
         label = pvl.load(input_data)
         self.label = label
         self.input_data = input_data
+
+        # lrm : open the input file
         with open(input_data, 'rb') as indata:
             # Extract and handle the ancillary data
             ancillary_data = find_in_dict(label, "ANCILLARY_AND_SUPPLEMENT_DATA")
@@ -129,3 +138,8 @@ class Spectral_Profiler(object):
                     self.spectra[i] = self.spectra[i][self.spectra[i]['QA'] < qa_threshold]
 
             self.spectra = pd.Panel(self.spectra)
+
+            logging.debug("io_spectral_profiler : qa_threshold = %s", qa_threshold)
+
+            print("io_spectral_profiler : self.spectra = {}".format(self.spectra))
+            logging.debug("io_spectral_profiler : self.spectra = %s", self.spectra)
