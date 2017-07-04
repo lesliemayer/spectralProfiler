@@ -379,10 +379,14 @@ class SpectralProfiler:
         logging.debug("spectralprofiler : draw_observations : latlon = %s", latlon)
 
         self.emission_angle = sp.ancillary_data['EMISSION_ANGLE']
+        logging.debug("spectralprofiler : draw_observations : type(self.emission_angle) = %s", type(self.emission_angle) )
         logging.debug("spectralprofiler : draw_observations : self.emission_angle %s", self.emission_angle)
 
         self.incidence_angle = sp.ancillary_data['INCIDENCE_ANGLE']
         logging.debug("spectralprofiler : draw_observations : self.incidence_angle %s", self.incidence_angle)
+
+        self.phase_angle = sp.ancillary_data['PHASE_ANGLE']
+        logging.debug("spectralprofiler : draw_observations : self.phase_angle %s", self.phase_angle)
 
         for i in range(sp.nspectra):
             pt = QgsFeature()
