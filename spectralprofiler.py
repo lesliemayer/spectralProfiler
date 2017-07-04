@@ -37,6 +37,13 @@ from qgis.core import *
 from spectralprofiler_dockwidget import SpectralProfilerDockWidget
 import os.path
 
+# for writing to the log file
+import logging
+
+# lrm : set up the logging file
+logging.basicConfig(level=logging.DEBUG,
+                    filename=r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\sp_extract_plugin.log', filemode='w')
+
 FIELDS = [QgsField('SPACECRAFT_CLOCK_COUNT', QVariant.Double),
           QgsField('VIS_FOCAL_PLANE_TEMPERATURE', QVariant.Double),
           QgsField('NIR1_FOCAL_PLANE_TEMPERATURE', QVariant.Double),
@@ -309,6 +316,10 @@ class SpectralProfiler:
 
     # LRM : read the spectral data from the input file
     def openspc(self):
+
+        print("SpectralProfiler : openspc : **************************************")
+
+
         fpaths = QtGui.QFileDialog.getOpenFileNames(self.dockwidget, 'Open Spectral Profiler', '*.spc')
 
         for fpath in fpaths:
@@ -320,7 +331,12 @@ class SpectralProfiler:
                 self.spectra[fname] = spectra
 
                 # lrm
-                print("SpectralProfiler : openspc : spectra : {}".format(self.spectra[fname]) )
+                print("SpectralProfiler : openspc : type(spectra) = {}".format(type(spectra)))
+                print("SpectralProfiler : openspc : self.spectra[fname] : {}".format(self.spectra[fname]) )
+                logging.debug("SpectralProfiler : openspc : type(spectra) = %s", (type(spectra)))
+                logging.debug("SpectralProfiler : openspc : fname) = %s", fname)
+                logging.debug("SpectralProfiler : openspc : type(self.spectra[fname]) = %s", (type(self.spectra[fname])))
+
 
 
             self.draw_observations(fname)
@@ -347,7 +363,7 @@ class SpectralProfiler:
                 self.v_layer.setCustomProperty('labeling', 'pal')
                 self.v_layer.setCustomProperty('labeling/fieldName', 'OBSERVATION_ID')
                 self.v_layer.setCustomProperty('labeling/fontSize', '10')
-                self.v_layer.setCustomProperty("labeling/placement", QgsPalLayerSettings.Line)
+                self.v_layer.setCustomProperty('labeling/placement', QgsPalLayerSettings.Line)
                 self.v_layer.setCustomProperty('labeling/enabled', 'True')
 
                 symbol = QgsMarkerSymbolV2.createSimple({'name': u'circle',
@@ -359,6 +375,13 @@ class SpectralProfiler:
 
         sp = self.spectra[fname]
         latlon = sp.ancillary_data[['CENTER_LATITUDE', 'CENTER_LONGITUDE']]
+        logging.debug("spectralprofiler : draw_observations : latlon = %s", latlon)
+
+        emission_angle = sp.ancillary_data['EMISSION_ANGLE']
+        logging.debug("spectralprofiler : draw_observations : emission_angle %s", emission_angle)
+
+        
+
         for i in range(sp.nspectra):
             pt = QgsFeature()
             attributes = sp.ancillary_data.iloc[i].to_dict()
