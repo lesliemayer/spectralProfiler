@@ -338,7 +338,6 @@ class SpectralProfiler:
                 logging.debug("SpectralProfiler : openspc : type(self.spectra[fname]) = %s", (type(self.spectra[fname])))
 
 
-
             self.draw_observations(fname)
 
     def draw_observations(self, fname):
@@ -374,13 +373,16 @@ class SpectralProfiler:
                 QgsMapLayerRegistry.instance().addMapLayer(self.v_layer)
 
         sp = self.spectra[fname]
+
+        print("spectralprofiler : drawobservations : setting latlon")
         latlon = sp.ancillary_data[['CENTER_LATITUDE', 'CENTER_LONGITUDE']]
         logging.debug("spectralprofiler : draw_observations : latlon = %s", latlon)
 
-        emission_angle = sp.ancillary_data['EMISSION_ANGLE']
-        logging.debug("spectralprofiler : draw_observations : emission_angle %s", emission_angle)
+        self.emission_angle = sp.ancillary_data['EMISSION_ANGLE']
+        logging.debug("spectralprofiler : draw_observations : self.emission_angle %s", self.emission_angle)
 
-        
+        self.incidence_angle = sp.ancillary_data['INCIDENCE_ANGLE']
+        logging.debug("spectralprofiler : draw_observations : self.incidence_angle %s", self.incidence_angle)
 
         for i in range(sp.nspectra):
             pt = QgsFeature()
