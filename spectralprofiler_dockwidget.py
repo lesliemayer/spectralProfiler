@@ -23,7 +23,7 @@
 
 from collections import defaultdict
 import os
-
+import logging
 
 from PyQt4 import QtCore, QtGui, uic
 from PyQt4.QtCore import pyqtSignal
@@ -129,15 +129,27 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         # Get filename and selected sp data :
         selected = v_layer.selectedFeatures()
+
+        # set up a default dictionary (defaultdict is from collections library)
+        #  will look like :
+        # {u'SP_2B2_01_00896_N233_E3127.spc': [75, 76, 77, 78, 79, 80]})
         d = defaultdict(list)
         for s in selected:
             fname = s.attribute('FILENAME')
             id = s.attribute('OBSERVATION_ID')
             d[fname].append(id)
 
+
+
         # d is filename and observation numbers
         # u'SP_2C_02_03860_S136_E3557.spc': [20, 21, 22, 23, 24, 25, 26, 27]
         print("spectralprofiler_dockwidget : plot : d = {}".format(d))
+
+        # get the angles info for selected observations - lrm
+        emission_angle = []
+        for s in selected:
+            emission_angle.append(s.attribute('EMISSION_ANGLE'))
+        logging.debug("spectralprofiler_dockwidget : emission_angle = %s", emission_angle)
 
 
         selected_spectra = {}  # u'SP_2C_02_03860_S136_E3557.spc' - a pandas class ***
