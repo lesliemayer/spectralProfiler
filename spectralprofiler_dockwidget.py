@@ -174,3 +174,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # lrm :
         #dialog.plot()
         dialog.plot(emission_angle, incidence_angle, phase_angle)
+
+        # CALL sp_extract_plugin here????????
+        # spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
+        # spectraPlot.make_plots()
