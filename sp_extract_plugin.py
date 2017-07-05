@@ -52,6 +52,16 @@ class SP_EXTRACT:
         logging.debug("__init__ : type(spectra) = %s", type(spectra))
         self.spectra = spectra
 
+        # get the number of observations
+        self.num_observations = len(emission_angle)
+        logging.debug("sp_extract_plugin : __init__ : self.num_observations = %s", self.num_observations)
+
+        # Get the angles
+        angles = []
+        for n in range(self.num_observations):
+            angles.append([self.incidence_angle, self.emission_angle,  self.phase_angle])
+        angles = np.asarray(angles)
+
 
     def openspc(self, input_data, save):
 
