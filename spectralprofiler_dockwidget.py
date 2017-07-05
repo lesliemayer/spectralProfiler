@@ -150,6 +150,16 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         for s in selected:
             emission_angle.append(s.attribute('EMISSION_ANGLE'))
         logging.debug("spectralprofiler_dockwidget : emission_angle = %s", emission_angle)
+        
+        incidence_angle = []
+        for s in selected:
+            incidence_angle.append(s.attribute('INCIDENCE_ANGLE'))
+        logging.debug("spectralprofiler_dockwidget : incidence_angle = %s", incidence_angle)
+        
+        phase_angle = []
+        for s in selected:
+            phase_angle.append(s.attribute('PHASE_ANGLE'))
+        logging.debug("spectralprofiler_dockwidget : phase_angle = %s", phase_angle)
 
 
         selected_spectra = {}  # u'SP_2C_02_03860_S136_E3557.spc' - a pandas class ***
