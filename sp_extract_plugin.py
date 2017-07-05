@@ -60,7 +60,7 @@ class SP_EXTRACT:
         self.angles = []
         for n in range(self.num_observations):
             self.angles.append([incidence_angle, emission_angle,  phase_angle])
-        self.angles = np.asarray(angles)
+        self.angles = np.asarray(self.angles)
 
     # Not using this - lrm
     def openspc(self, input_data, save):
