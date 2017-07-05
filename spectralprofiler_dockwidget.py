@@ -94,126 +94,19 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
     def initgui(self):
 
-        # lrm
-        # # Continuum Correction
-        # self.continuum_bottom.valueChanged.connect(lambda i: self.continuum_bottom_label.setText('{}'.format(
-        #     self.wavelengths[i])))
-        # self.continuum_top.valueChanged.connect(lambda i: self.continuum_top_label.setText('{}'.format(
-        #     self.wavelengths[i])))
-
-        # lrm
-        # # Add + icon to button to add a wavelength
-        # self.add_endpoint.setIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-        #                                                    'icons/add.png')))
-        # # Add - icon to button for removing a wavelength
-        # self.remove_endpoint.setIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-        #                                                       'icons/remove.png')))
-
-        # lrm
-        # self.add_endpoint.clicked.connect(self.add_continuum_endpoint)
-        # self.remove_endpoint.clicked.connect(self.remove_continuum_endpoint)
-
-        # lrm
-        # # Clipping
-        # self.clipping_lower.valueChanged.connect(lambda i: self.clipping_lower_label.setText('{}'.format(
-        #     self.wavelengths[i])))
-        # self.clipping_upper.valueChanged.connect(lambda i: self.clipping_upper_label.setText('{}'.format(
-        #     self.wavelengths[i])))
 
         # #Spectral Smoothing
 
         # plugin won't load if this is commented out
         self.plot_selected.clicked.connect(self.plot)
 
-    # lrm  - this doesn't seem to be needed  - or does it!!!???
-    # def closeEvent(self, event):
-    #      self.closingPlugin.emit()
-    #      event.accept()
-
-    # lrm - this not needed anymore
-    # def add_continuum_endpoint(self):
-    #     widget = QtGui.QWidget()
-    #     hbox = QtGui.QHBoxLayout()
-    #     hbox.setContentsMargins(0,0,0,0)
-    #     widget.setLayout(hbox)
-    #
-    #     slider = QtGui.QSlider(QtCore.Qt.Horizontal)
-    #     slider.setRange(0, 268)
-    #     label = QtGui.QLabel('{}'.format(self.wavelengths[0]))
-    #     slider.valueChanged.connect(lambda i: label.setText('{}'.format(self.wavelengths[i])))
-    #
-    #     hbox.addWidget(slider)
-    #     hbox.addWidget(label)
-    #
-    #     self.cc_slider_vlb.addWidget(widget)
-
-    # lrm - this not needed anymore
-    # def remove_continuum_endpoint(self):
-    #     row = self.cc_slider_vlb.count()
-    #     widget = self.cc_slider_vlb.takeAt(row - 1)
-    #
-    #     if widget is not None:
-    #         widget.widget().deleteLater()
 
     # This is called when "Plot Selected" button is hit
     def plot(self):
         print("spectralprofiler_dockwidget : plot")
 
-        # Get the continuum endpoints
-        # continuum_endpoints = []
-        # for i in range(self.cc_slider_vlb.count()):
-        #     row_widget = self.cc_slider_vlb.itemAt(i).widget()
-        #     for element in row_widget.children():
-        #         if isinstance(element, QtGui.QLabel):
-        #             continuum_endpoints.append(float(element.text()))
-        # lrm
-        continuum_endpoints = [500., 1700.]  # This is for the correction
-
-        # lrm
-        #correction_method = self.correction_method.currentText()
-        #print("type of correction_method = {}".format(type(correction_method)))
-        # smoothing_method = self.smoothing_method.currentText()
-        # lrm
-        # correction_method = unicode("Linear")
-        # #smoothing_method = unicode("Gaussian")
-        # smoothing_method = unicode("None")
-        #
-        # print("spectralprofiler_dockwidget : plot : correction_method = {}".format(correction_method))
-        # print("spectralprofiler_dockwidget : plot : smoothing_method = {}".format(smoothing_method))
-
-
-        # lrm
-        #smoothing_window_size = int(self.smoothing_window_size.value())
-        #smoothing_window_size = 7
-
-
-        #offset = float(self.offset.value())
-        #print("spectralprofiler_dockwidget : plot : offset = {}".format(offset))
-        # offset = float(0.)  # lrm
-        # print("spectralprofiler_dockwidget : plot : offset = {}".format(offset))
-        #
-        # # The plotting x-axis range
-        # # clipping_lower = float(self.clipping_lower_label.text())
-        # # clipping_upper = float(self.clipping_upper_label.text())
-        # clipping_lower = float(500.)
-        # clipping_upper = float(1700.)
-        # print("spectralprofiler_dockwidget : plot : clipping_lower, clipping_upper = {} {}".format(clipping_lower, clipping_upper))
-
-        # pcorrect = None
-        # for i in range(self.correction_vlb.count()):
-        #     widget = self.correction_vlb.itemAt(i).widget()
-        #     if isinstance(widget, QtGui.QRadioButton):
-        #         if widget.isChecked():
-        #             pcorrect = widget.text()
-        # pcorrect = unicode("Highlands")
-        # print("spectralprofiler_dockwidget : plot : pcorrect = {}".format(pcorrect))
-
         # Create the plot dialog
         dialog = PlotDialog()
-
-        # lrm : set the dialog wavelengths
-        # dialog.wavelengths = self.wavelengths lrm
-        #print("spectralprofiler_dockwidget : plot : dialog.wavelengths = {}".format(dialog.wavelengths))
 
         # Set the title of the window to a number
         dialog.setWindowTitle('{}'.format(self.window_key))
@@ -255,8 +148,6 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # lrm : need this or crashes
         dialog.set_spectra(selected_spectra)
 
-        # THIS IS WHERE WE GET THE TKINTER ERROR :
-        # dialog.plot(continuum_endpoints, correction_method, smoothing_method, smoothing_window_size, offset,
-        #             clipping_lower, clipping_upper, pcorrect)
+
         # lrm :
         dialog.plot()
