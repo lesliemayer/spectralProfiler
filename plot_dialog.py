@@ -58,7 +58,8 @@ class PlotDialog(cls_dialog, ui_dialog):
             self.spectratree.model().appendRow(parent)
 
 
-    def plot(self):
+    #def plot(self):
+    def plot(self, emission_angle, incidence_angle, phase_angle):
 
         # lrm
         # if pcorrect == 'Mare':
@@ -99,7 +100,7 @@ class PlotDialog(cls_dialog, ui_dialog):
                 # NEED TO PASS OBSERVATIO DATA TO THE SP_EXTRACT PLOTTING CODE
                 # DO THRU __init__???
 
-                spectraPlot = SP_EXTRACT(spectra)
+                spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
                 spectraPlot.make_plots()
 
 

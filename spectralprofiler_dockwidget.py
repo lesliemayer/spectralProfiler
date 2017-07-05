@@ -172,4 +172,5 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
 
         # lrm :
-        dialog.plot()
+        #dialog.plot()
+        dialog.plot(emission_angle, incidence_angle, phase_angle)

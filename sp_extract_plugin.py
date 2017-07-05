@@ -34,7 +34,7 @@ class SP_EXTRACT:
         #     args.save = True
         #     args.observation = [0]
 
-    def __init__(self, spectra):
+    def __init__(self, spectra, emission_angle, incidence_angle, phase_angle):
         # Set up logging
 
 
@@ -43,6 +43,9 @@ class SP_EXTRACT:
         self.wv_limits = 1652
         self.save = True
         self.observation = [0]
+        self.emission_angle = emission_angle
+        self.incidence_angle = incidence_angle
+        self.phase_angle = phase_angle
         self.wv_array = None
 
         # pass the observation spectrum data from the plugin
