@@ -38,14 +38,14 @@ class SP_EXTRACT:
         # Set up logging
 
 
-        self.input_data = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\data\LeslieTest\SP_2B2_01_00896_N233_E3127.spc'
+        #self.input_data = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\data\LeslieTest\SP_2B2_01_00896_N233_E3127.spc'
         self.albedo_tab = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\high_albedo_coefficients.csv'
         self.wv_limits = 1652
         self.save = True
         self.observation = [0]
-        self.emission_angle = emission_angle
-        self.incidence_angle = incidence_angle
-        self.phase_angle = phase_angle
+        # self.emission_angle = emission_angle
+        # self.incidence_angle = incidence_angle
+        # self.phase_angle = phase_angle
         self.wv_array = None
 
         # pass the observation spectrum data from the plugin
@@ -57,12 +57,12 @@ class SP_EXTRACT:
         logging.debug("sp_extract_plugin : __init__ : self.num_observations = %s", self.num_observations)
 
         # Get the angles
-        angles = []
+        self.angles = []
         for n in range(self.num_observations):
-            angles.append([self.incidence_angle, self.emission_angle,  self.phase_angle])
-        angles = np.asarray(angles)
+            self.angles.append([incidence_angle, emission_angle,  phase_angle])
+        self.angles = np.asarray(angles)
 
-
+    # Not using this - lrm
     def openspc(self, input_data, save):
 
         """
