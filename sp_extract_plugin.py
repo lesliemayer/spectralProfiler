@@ -43,9 +43,9 @@ class SP_EXTRACT:
         self.wv_limits = 1652
         self.save = True
         self.observation = [0]
-        # self.emission_angle = emission_angle
-        # self.incidence_angle = incidence_angle
-        # self.phase_angle = phase_angle
+        self.emission_angle = np.asarray(emission_angle)
+        self.incidence_angle = np.asarray(incidence_angle)
+        self.phase_angle = np.asarray(phase_angle)
         self.wv_array = None
 
         # pass the observation spectrum data from the plugin
@@ -57,10 +57,12 @@ class SP_EXTRACT:
         logging.debug("sp_extract_plugin : __init__ : self.num_observations = %s", self.num_observations)
 
         # Get the angles
-        self.angles = []
-        for n in range(self.num_observations):
-            self.angles.append([incidence_angle, emission_angle,  phase_angle])
-        self.angles = np.asarray(self.angles)
+        # self.angles = []
+        # for n in range(self.num_observations):
+        #     self.angles.append([incidence_angle, emission_angle,  phase_angle])
+        # self.angles = np.asarray(self.angles)
+        #
+        # logging.debug("sp_extract_plugin : __init__ : self.angles = %s", self.angles)
 
     # Not using this - lrm
     def openspc(self, input_data, save):
@@ -242,14 +244,18 @@ class SP_EXTRACT:
 
         return supplemental
 
-    def photometric_correction(self, wv, ref_vec,coefficient_table, angles, xl_fixed,c1,c2,c3):
+    #def photometric_correction(self, wv, ref_vec,coefficient_table, angles, xl_fixed,c1,c2,c3):
+    def photometric_correction(self, wv, ref_vec, coefficient_table, xl_fixed, c1, c2, c3):
+
+
         '''
         TODO: Docs here
         This function performs the photometric correction.
         '''
-        incidence_angle = angles[:,0]
-        emission_angle = angles[:,1]
-        phase_angle = angles[:,2]
+        # incidence_angle = angles[:,0]
+        # emission_angle = angles[:,1]
+        # phase_angle = angles[:,2]
+
 
 
         def _phg(g, phase_angle):
@@ -270,16 +276,25 @@ class SP_EXTRACT:
         f_fixed = (1+b)*p
 
         #Compute the phase function with the observation phase
-        p = (((1-c)/2) * _phg(g,phase_angle)) + (((1+c)/2)* _phg((-1 * g),phase_angle))
-        b = b_naught / (1+(np.tan(np.radians(phase_angle/2.0))/h))
+        #p = (((1-c)/2) * _phg(g,phase_angle)) + (((1+c)/2)* _phg((-1 * g),phase_angle))
+        p = (((1 - c) / 2) * _phg(g, self.phase_angle)) + (((1 + c) / 2) * _phg((-1 * g), self.phase_angle))
+        #b = b_naught / (1+(np.tan(np.radians(phase_angle/2.0))/h))
+        b = b_naught / (1 + (np.tan(np.radians(self.phase_angle / 2.0)) / h))
         f_observed = (1+b)*p
 
         f_ratio = f_fixed / f_observed
 
         #Compute the lunar lambert function
-        l = 1.0 + (c1*phase_angle) + (c2*phase_angle**2) + (c3*phase_angle**3)
-        cosi = np.cos(np.radians(incidence_angle))
-        cose = np.cos(np.radians(emission_angle))
+        #l = 1.0 + (c1*phase_angle) + (c2*phase_angle**2) + (c3*phase_angle**3)
+        l = 1.0 + (c1 * self.phase_angle) + (c2 * self.phase_angle ** 2) + (c3 * self.phase_angle ** 3)
+
+        #cosi = np.cos(np.radians(incidence_angle))
+        cosi = np.cos(np.radians(self.incidence_angle))
+
+        #cose = np.cos(np.radians(emission_angle))
+        cose = np.cos(np.radians(self.emission_angle))
+
+
         xl_observed = 2 * l * (cosi / (cosi + cose)) + ((1-l)*cosi)
         xl_ratio = xl_fixed / xl_observed
 
@@ -358,7 +373,11 @@ class SP_EXTRACT:
 
         #Perform the photometric correction
         for wv in range(len(coefficient_table)):
-            ref_array[:,wv] = self.photometric_correction(wv, ref_array[:,wv], coefficient_table, angles, xl_constant,c1,c2,c3)
+            # ref_array[:,wv] = self.photometric_correction(wv, ref_array[:,wv], coefficient_table,
+            #                                               self.angles, xl_constant,c1,c2,c3)
+            ref_array[:, wv] = self.photometric_correction(wv, ref_array[:, wv], coefficient_table,
+                                                           xl_constant, c1, c2, c3)
+
 
         #Copy the photometrically corrected array
         photometrically_corrected_ref_array = np.copy(ref_array)
