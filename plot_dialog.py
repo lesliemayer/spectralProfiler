@@ -1,11 +1,11 @@
 import os
 from PyQt4 import QtCore, QtGui, uic
 
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-# Original
-#from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
-# L. Mayer 04/28/2017 :
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+# from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
+# # Original
+# #from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
+# # L. Mayer 04/28/2017 :
+# from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 
 from matplotlib.figure import Figure
 
