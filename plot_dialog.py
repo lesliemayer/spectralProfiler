@@ -15,19 +15,22 @@ from sp_extract_plugin import SP_EXTRACT
 base = os.path.dirname(os.path.abspath(__file__))
 
 # the dialog box for the plotting window (not the main one)
-ui_dialog, cls_dialog = uic.loadUiType(os.path.join(base, 'ui/plot_dialog.ui'))
+#ui_dialog, cls_dialog = uic.loadUiType(os.path.join(base, 'ui/plot_dialog.ui'))
 
 
-class PlotDialog(cls_dialog, ui_dialog):
+#class PlotDialog(cls_dialog, ui_dialog):
+class PlotDialog():
 
-    def __init__(self, *args, **kwargs):
-        super(PlotDialog, self).__init__(*args, **kwargs)
-        self.setupUi(self)
+    #def __init__(self, *args, **kwargs):
+    def __init__(self):
+        #super(PlotDialog, self).__init__(*args, **kwargs)
+        #self.setupUi(self)
 
         #self.initmpl()
         #self.inittree()
 
-        self.show()
+        #self.show()
+        pass
 
     
     # lrm : set up the plotting window

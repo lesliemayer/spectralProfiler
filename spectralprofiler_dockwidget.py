@@ -108,10 +108,11 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # Create the plot dialog
         dialog = PlotDialog()
 
+        # not using this window anymore - lrm
         # Set the title of the window to a number
-        dialog.setWindowTitle('{}'.format(self.window_key))
-        self.plot_windows[self.window_key] = dialog
-        self.window_key += 1
+        # dialog.setWindowTitle('{}'.format(self.window_key))
+        # self.plot_windows[self.window_key] = dialog
+        # self.window_key += 1
 
         # Get the selected spectra and add them to the dialog
         v_layer = self.parent.v_layer
