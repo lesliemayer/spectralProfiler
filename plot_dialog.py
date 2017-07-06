@@ -104,6 +104,6 @@ class PlotDialog(cls_dialog, ui_dialog):
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
                 spectraPlot.make_plots()
 
-
-        self.canvas.draw()
+        # lrm
+        #self.canvas.draw()
 
