@@ -39,7 +39,13 @@ class SP_EXTRACT:
 
 
         #self.input_data = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\data\LeslieTest\SP_2B2_01_00896_N233_E3127.spc'
-        self.albedo_tab = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\high_albedo_coefficients.csv'
+        # Highlands
+        #self.albedo_tab = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\high_albedo_coefficients.csv'
+        #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\high_albedo_coefficients.csv'
+        # Mare
+        self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
+
+
         self.wv_limits = 1652
         self.save = True
         self.observation = [0]
