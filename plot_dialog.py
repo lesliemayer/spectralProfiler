@@ -63,7 +63,7 @@ class PlotDialog():
 
 
     #def plot(self):
-    def plot(self, emission_angle, incidence_angle, phase_angle):
+    def plot(self, emission_angle, incidence_angle, phase_angle, isHighlands):
 
         # lrm
         # if pcorrect == 'Mare':
@@ -100,9 +100,7 @@ class PlotDialog():
 
                 df['CC'] = spectra
 
-                spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
+                # initialize SP_EXTRACT
+                spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle, isHighlands)
                 spectraPlot.make_plots()
-
-        # lrm
-        #self.canvas.draw()
 

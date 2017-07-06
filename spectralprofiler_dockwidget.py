@@ -208,9 +208,10 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         dialog.set_spectra(selected_spectra)
 
 
-        # lrm :
-        #dialog.plot()
-        dialog.plot(emission_angle, incidence_angle, phase_angle)
+        # Plot the spectral data
+        # change this later : lrm
+        isHighlands = True
+        dialog.plot(emission_angle, incidence_angle, phase_angle, isHighlands)
 
         # CALL sp_extract_plugin here????????
         # spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)

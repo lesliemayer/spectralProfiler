@@ -34,16 +34,19 @@ class SP_EXTRACT:
         #     args.save = True
         #     args.observation = [0]
 
-    def __init__(self, spectra, emission_angle, incidence_angle, phase_angle):
+    def __init__(self, spectra, emission_angle, incidence_angle, phase_angle, isHighlands):
         # Set up logging
 
 
         #self.input_data = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\data\LeslieTest\SP_2B2_01_00896_N233_E3127.spc'
+
+        if (isHighlands):
         # Highlands
         #self.albedo_tab = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\high_albedo_coefficients.csv'
-        #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\high_albedo_coefficients.csv'
-        # Mare
-        self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
+            self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\high_albedo_coefficients.csv'
+        else:
+            # Mare
+            self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
 
 
         self.wv_limits = 1652
