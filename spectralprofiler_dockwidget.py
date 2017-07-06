@@ -100,7 +100,23 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # plugin won't load if this is commented out
         self.plot_selected.clicked.connect(self.plot)
 
+        # Mare/Highlands radio buttons
         self.radioButton_2.setChecked(True)  # set Mare to true
+        self.radioButton_2.toggled.connect(lambda: self.btnstate(self.radioButton_2))
+
+    def btnstate(self, b):
+
+        if b.text() == "Mare":
+            if b.isChecked() == True:
+                print b.text() + " is selected"
+            else:
+                print b.text() + " is deselected"
+
+        if b.text() == "Highlands":
+            if b.isChecked() == True:
+                print b.text() + " is selected"
+            else:
+                print b.text() + " is deselected"
 
 
     # This is called when "Plot Selected" button is hit
