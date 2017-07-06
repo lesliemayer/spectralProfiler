@@ -25,9 +25,8 @@ class PlotDialog(cls_dialog, ui_dialog):
         self.setupUi(self)
 
         self.initmpl()
-        self.inittree()
+        #self.inittree()
 
-        #self.initgui()  # not needed - lrm
         self.show()
 
     
@@ -39,11 +38,11 @@ class PlotDialog(cls_dialog, ui_dialog):
         self.figure = Figure()
 
 
-    def inittree(self):  # is this the observation tree view in box on the right?
-        """
-        Initialize the tree view
-        """
-        self.spectratree.setModel(QtGui.QStandardItemModel())
+    # def inittree(self):  # is this the observation tree view in box on the right?
+    #     """
+    #     Initialize the tree view
+    #     """
+    #     self.spectratree.setModel(QtGui.QStandardItemModel())
 
     # lrm : get the spectrum data??  *** or set the spectrum data !!!!
     def set_spectra(self, spectra):
@@ -55,7 +54,9 @@ class PlotDialog(cls_dialog, ui_dialog):
                 child = QtGui.QStandardItem('Observation {}'.format(label))
                 child.setFlags(QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable)
                 parent.appendRow(child)
-            self.spectratree.model().appendRow(parent)
+
+            # obs tree - don't need
+            #self.spectratree.model().appendRow(parent)
 
 
     #def plot(self):
