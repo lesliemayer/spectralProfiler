@@ -92,6 +92,8 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.window_key = 0
         self.plot_windows = {}
 
+        self.isHighlands
+
     def initgui(self):
 
 
@@ -101,22 +103,30 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.plot_selected.clicked.connect(self.plot)
 
         # Mare/Highlands radio buttons
+        self.isHighlands = False
         self.radioButton_2.setChecked(True)  # set Mare to true
         self.radioButton_2.toggled.connect(lambda: self.btnstate(self.radioButton_2))
+
 
     def btnstate(self, b):
 
         if b.text() == "Mare":
             if b.isChecked() == True:
-                print b.text() + " is selected"
+                self.isHighlands = False
+                print b.text() + " is selected, isHighlands = " + str(self.isHighlands)
             else:
-                print b.text() + " is deselected"
+                self.isHighlands = True
+                print b.text() + " is deselected, isHighlands = " + str(self.isHighlands)
 
-        if b.text() == "Highlands":
-            if b.isChecked() == True:
-                print b.text() + " is selected"
-            else:
-                print b.text() + " is deselected"
+
+        # would need this if there is connect function for the Highlands button
+        # if b.text() == "Highlands":
+        #     if b.isChecked() == True:
+        #         print b.text() + " is selected"
+        #         self.isHighlands = True
+        #     else:
+        #         print b.text() + " is deselected"
+        #         self.isHighlands = False
 
 
     # This is called when "Plot Selected" button is hit
@@ -209,9 +219,8 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
 
         # Plot the spectral data
-        # change this later : lrm
-        isHighlands = True
-        dialog.plot(emission_angle, incidence_angle, phase_angle, isHighlands)
+
+        dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands)
 
         # CALL sp_extract_plugin here????????
         # spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
