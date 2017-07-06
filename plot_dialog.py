@@ -51,12 +51,12 @@ class PlotDialog():
     def set_spectra(self, spectra):
 
         self.data = spectra
-        for k, obs in self.data.iteritems():
-            parent = QtGui.QStandardItem(k)
-            for label, values in obs.iteritems():
-                child = QtGui.QStandardItem('Observation {}'.format(label))
-                child.setFlags(QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable)
-                parent.appendRow(child)
+        # for k, obs in self.data.iteritems():
+        #     parent = QtGui.QStandardItem(k)
+        #     for label, values in obs.iteritems():
+        #         child = QtGui.QStandardItem('Observation {}'.format(label))
+        #         child.setFlags(QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable)
+        #         parent.appendRow(child)
 
             # obs tree - don't need
             #self.spectratree.model().appendRow(parent)
