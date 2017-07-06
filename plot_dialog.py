@@ -7,9 +7,9 @@ from PyQt4 import QtCore, QtGui, uic
 # # L. Mayer 04/28/2017 :
 # from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 
-from matplotlib.figure import Figure
+#from matplotlib.figure import Figure
 
-#from sp_extract import clean_data
+
 from sp_extract_plugin import SP_EXTRACT
 
 base = os.path.dirname(os.path.abspath(__file__))
@@ -24,18 +24,18 @@ class PlotDialog(cls_dialog, ui_dialog):
         super(PlotDialog, self).__init__(*args, **kwargs)
         self.setupUi(self)
 
-        self.initmpl()
+        #self.initmpl()
         #self.inittree()
 
         self.show()
 
     
     # lrm : set up the plotting window
-    def initmpl(self):
-        """
-        Initialize the MatPlotLib Figure
-        """
-        self.figure = Figure()
+    # def initmpl(self):
+    #     """
+    #     Initialize the MatPlotLib Figure
+    #     """
+    #     self.figure = Figure()
 
 
     # def inittree(self):  # is this the observation tree view in box on the right?
