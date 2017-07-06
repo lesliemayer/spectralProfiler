@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui, uic
 
 from sp_extract_plugin import SP_EXTRACT
 
-base = os.path.dirname(os.path.abspath(__file__))
+#base = os.path.dirname(os.path.abspath(__file__))
 
 # the dialog box for the plotting window (not the main one)
 #ui_dialog, cls_dialog = uic.loadUiType(os.path.join(base, 'ui/plot_dialog.ui'))
