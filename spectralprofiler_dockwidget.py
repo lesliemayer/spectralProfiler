@@ -100,10 +100,30 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # plugin won't load if this is commented out
         self.plot_selected.clicked.connect(self.plot)
 
+        self.radioButton_2.setChecked(True)  # set Mare to true
+
 
     # This is called when "Plot Selected" button is hit
     def plot(self):
         print("spectralprofiler_dockwidget : plot")
+
+        # pcorrect = None
+        # for i in range(self.correction_vlb.count()):
+        #     widget = self.correction_vlb.itemAt(i).widget()
+        #     if isinstance(widget, QtGui.QRadioButton):
+        #         if widget.isChecked():
+        #             pcorrect = widget.text()
+
+        # get the value of the radio buttons
+        # pcorrect = None
+        # for i in range(self.groupBox.count()):
+        #     widget = self.groupBox.itemAt(i).widget()
+        #     if isinstance(widget, QtGui.QRadioButton):
+        #        if widget.isChecked():
+        #           pcorrect = widget.text()
+
+
+
 
         # Create the plot dialog
         dialog = PlotDialog()
