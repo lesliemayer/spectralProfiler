@@ -100,10 +100,6 @@ class PlotDialog():
 
                 df['CC'] = spectra
 
-
-                # NEED TO PASS OBSERVATIO DATA TO THE SP_EXTRACT PLOTTING CODE
-                # DO THRU __init__???
-
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
                 spectraPlot.make_plots()
 

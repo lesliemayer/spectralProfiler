@@ -56,15 +56,9 @@ class SP_EXTRACT:
         self.num_observations = len(emission_angle)
         logging.debug("sp_extract_plugin : __init__ : self.num_observations = %s", self.num_observations)
 
-        # Get the angles
-        # self.angles = []
-        # for n in range(self.num_observations):
-        #     self.angles.append([incidence_angle, emission_angle,  phase_angle])
-        # self.angles = np.asarray(self.angles)
-        #
-        # logging.debug("sp_extract_plugin : __init__ : self.angles = %s", self.angles)
 
-    # Not using this - lrm
+
+    # Not using this - lrm ====================================================================================
     def openspc(self, input_data, save):
 
         """
@@ -84,7 +78,6 @@ class SP_EXTRACT:
                        An array of reflectance values over the image.
                        This is binned into n observations.  In tests we have generally seen 44 observations per image.
         """
-
 
         label = open(input_data, 'r+b')
         for line in label:
