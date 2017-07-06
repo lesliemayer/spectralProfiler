@@ -32,20 +32,6 @@ class PlotDialog():
         #self.show()
         pass
 
-    
-    # lrm : set up the plotting window
-    # def initmpl(self):
-    #     """
-    #     Initialize the MatPlotLib Figure
-    #     """
-    #     self.figure = Figure()
-
-
-    # def inittree(self):  # is this the observation tree view in box on the right?
-    #     """
-    #     Initialize the tree view
-    #     """
-    #     self.spectratree.setModel(QtGui.QStandardItemModel())
 
     # lrm : get the spectrum data??  *** or set the spectrum data !!!!
     def set_spectra(self, spectra):

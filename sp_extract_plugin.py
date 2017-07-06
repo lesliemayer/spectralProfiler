@@ -10,6 +10,7 @@ import argparse
 import os
 import math
 import logging  # lrm
+import os  # for getting the plugin path
 
 class SP_EXTRACT:
 
@@ -38,16 +39,19 @@ class SP_EXTRACT:
         # Set up logging
 
 
+        self.plugin_path = os.path.dirname(os.path.realpath(__file__))
+
         #self.input_data = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\data\LeslieTest\SP_2B2_01_00896_N233_E3127.spc'
 
         if (isHighlands):
         # Highlands
         #self.albedo_tab = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\high_albedo_coefficients.csv'
-            self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\high_albedo_coefficients.csv'
+            #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\high_albedo_coefficients.csv'
+            self.albedo_tab = self.plugin_path +  r'.\data\albedo\high_albedo_coefficients.csv'
         else:
             # Mare
-            self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
-
+            #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
+            self.albedo_tab = self.plugin_path + r'.\data\albedo\low_albedo_coefficients.csv'
 
         self.wv_limits = 1652
         self.save = True
