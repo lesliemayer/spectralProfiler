@@ -38,10 +38,9 @@ class SP_EXTRACT:
     def __init__(self, spectra, emission_angle, incidence_angle, phase_angle, isHighlands):
         # Set up logging
 
-
+        # Get the directory name of the qgis plugin
         self.plugin_path = os.path.dirname(os.path.realpath(__file__))
 
-        #self.input_data = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\data\LeslieTest\SP_2B2_01_00896_N233_E3127.spc'
 
         if (isHighlands):
         # Highlands
