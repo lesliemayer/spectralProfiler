@@ -95,7 +95,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.isHighlands
 
     def initgui(self):
-
+        """Set up the gui"""
 
         # #Spectral Smoothing
 
@@ -107,8 +107,18 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.radioButton_2.setChecked(True)  # set Mare to true
         self.radioButton_2.toggled.connect(lambda: self.btnstate(self.radioButton_2))
 
+        # Line boxes
+        #QtextEdit.textChanged.connect(your_method_to_put_text_somewhere_else)
+        # left shoulder
+        self.lineEdit.setText("44.4")
+        self.lineEdit.textChanged.connect(lambda: self.textstate(self.lineEdit))
+
+        # right shoulder
+        self.lineEdit_2.setText("511.4")
+        self.lineEdit_2.textChanged.connect(lambda: self.textstate(self.lineEdit))
 
     def btnstate(self, b):
+        """Get the value of the radio buttons, Mare or Highlands"""
 
         if b.text() == "Mare":
             if b.isChecked() == True:
@@ -117,6 +127,12 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
             else:
                 self.isHighlands = True
                 print b.text() + " is deselected, isHighlands = " + str(self.isHighlands)
+
+
+    def textstate(self, t):
+        print "In textstate ***************************************"
+        # get the text
+        self.leftshoulder = t.text()
 
 
         # would need this if there is connect function for the Highlands button
