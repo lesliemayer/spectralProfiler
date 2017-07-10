@@ -35,7 +35,8 @@ class SP_EXTRACT:
         #     args.save = True
         #     args.observation = [0]
 
-    def __init__(self, spectra, emission_angle, incidence_angle, phase_angle, isHighlands):
+    def __init__(self, spectra, emission_angle, incidence_angle, phase_angle, isHighlands,
+                 leftShoulder, rightShoulder):
         # Set up logging
 
         # Get the directory name of the qgis plugin
@@ -68,6 +69,12 @@ class SP_EXTRACT:
         self.num_observations = len(emission_angle)
         logging.debug("sp_extract_plugin : __init__ : self.num_observations = %s", self.num_observations)
 
+
+        # Set the left & right shoulders
+        self.leftShoulder = leftShoulder
+        self.rightShoulder = rightShoulder
+        logging.debug("sp_extract_plugin : __init__ : self.leftShoulder = %s", self.leftShoulder)
+        logging.debug("sp_extract_plugin : __init__ : self.rightShoulder = %s", self.rightShoulder)
 
 
     # Not using this - lrm ====================================================================================
@@ -204,7 +211,7 @@ class SP_EXTRACT:
     #def getbandnumbers(wavelengths, *args):
     def getbandnumbers(self):
         '''
-        This parses the wavelenth list,finds the mean wavelength closest to the
+        This parses the wavelength list,finds the mean wavelength closest to the
         provided wavelength, and returns the index of that value.  One (1) is added
         to the index to grab the correct band.
 
@@ -390,6 +397,7 @@ class SP_EXTRACT:
 
         #Continuum correction
         #bands = getbandnumbers(wv_array, 752.8,1547.7)
+        #bands = self.getbandnumbers(self.leftShoulder, self.rightShoulder)  # lrm fix this ***
         bands = self.getbandnumbers() # lrm
 
         #Continuum correct all observations
