@@ -94,6 +94,9 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         self.isHighlands
 
+        self.leftShoulder = None
+        self.rightShoulder = None
+
     def initgui(self):
         """Set up the gui"""
 
@@ -110,12 +113,13 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # Line boxes
         #QtextEdit.textChanged.connect(your_method_to_put_text_somewhere_else)
         # left shoulder
-        self.lineEdit.setText("44.4")
+        self.lineEdit.setText("752.8")
         self.lineEdit.textChanged.connect(lambda: self.textstate(self.lineEdit))
 
         # right shoulder
-        self.lineEdit_2.setText("511.4")
-        self.lineEdit_2.textChanged.connect(lambda: self.textstate(self.lineEdit))
+        self.lineEdit_2.setText("1547.7")
+        self.lineEdit_2.textChanged.connect(lambda: self.textstate_right(self.lineEdit_2))
+        #self.lineEdit_2.textChanged.connect(lambda: self.lineEdit_2.text())
 
     def btnstate(self, b):
         """Get the value of the radio buttons, Mare or Highlands"""
@@ -130,9 +134,20 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
 
     def textstate(self, t):
-        print "In textstate ***************************************"
+        print "In lineEdit textstate ***************************************"
+        print ("t.text() = {}".format(t.text()))
         # get the text
-        self.leftshoulder = t.text()
+        #if lineEdit.text
+        self.leftShoulder = t.text()
+
+    def textstate_right(self, t):
+        print "In lineEdit textstate_right ***************************************"
+        print ("t.text() = {}".format(t.text()))
+        # get the text
+        # if lineEdit.text
+        self.rightShoulder = t.text()
+
+
 
 
         # would need this if there is connect function for the Highlands button
@@ -235,8 +250,8 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
 
         # Plot the spectral data
-
-        dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands)
+        dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
+                    self.leftShoulder, self.rightShoulder)
 
         # CALL sp_extract_plugin here????????
         # spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
