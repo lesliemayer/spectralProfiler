@@ -92,11 +92,6 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.window_key = 0
         self.plot_windows = {}
 
-        self.isHighlands
-
-        self.leftShoulder = None
-        self.rightShoulder = None
-
     def initgui(self):
         """Set up the gui"""
 
@@ -114,10 +109,12 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         #QtextEdit.textChanged.connect(your_method_to_put_text_somewhere_else)
         # left shoulder
         self.lineEdit.setText("752.8")
+        self.leftShoulder = 752.8
         self.lineEdit.textChanged.connect(lambda: self.textstate(self.lineEdit))
 
         # right shoulder
         self.lineEdit_2.setText("1547.7")
+        self.rightShoulder = 1547.7
         self.lineEdit_2.textChanged.connect(lambda: self.textstate_right(self.lineEdit_2))
         #self.lineEdit_2.textChanged.connect(lambda: self.lineEdit_2.text())
 
@@ -138,14 +135,14 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         print ("t.text() = {}".format(t.text()))
         # get the text
         #if lineEdit.text
-        self.leftShoulder = t.text()
+        self.leftShoulder = float(t.text())
 
     def textstate_right(self, t):
         print "In lineEdit textstate_right ***************************************"
         print ("t.text() = {}".format(t.text()))
         # get the text
         # if lineEdit.text
-        self.rightShoulder = t.text()
+        self.rightShoulder = float(t.text())
 
 
 

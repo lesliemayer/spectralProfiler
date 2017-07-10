@@ -9,6 +9,7 @@ from PyQt4 import QtCore, QtGui, uic
 
 #from matplotlib.figure import Figure
 
+import logging
 
 from sp_extract_plugin import SP_EXTRACT
 
@@ -86,6 +87,10 @@ class PlotDialog():
                 #     df[key] *= .0001
 
                 df['CC'] = spectra
+
+                logging.debug("plot_dialog : plot : leftShoulder = %s", leftShoulder)
+                logging.debug("plot_dialog : plot : rightShoulder = %s", rightShoulder)
+
 
                 # initialize SP_EXTRACT
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,

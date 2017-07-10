@@ -226,12 +226,21 @@ class SP_EXTRACT:
         provided in.  Beware that altering the order will cause unexpected results.
 
         '''
-        # lrm hardwired bands
-        # bands = []
-        # for x in args:
-        #     bands.append(min(range(len(wavelengths)), key=lambda i: abs(wavelengths[i]-x)))
+        bands = []  # initialize bands list
 
-        bands = [40, 144]
+        shoulders = [self.leftShoulder, self.rightShoulder]
+
+        logging.debug("getbandnumbers : self.wv_array = ")
+        for ii in range(len(self.wv_array)):
+            logging.debug("ii = %s, wv_array = %s",ii,self.wv_array[ii])
+
+        for wv in shoulders:
+            # min(iterable[,key=func]) -> value
+            logging.debug("min comp : wv = %s", wv)
+            bands.append(min(range(len(self.wv_array)), key=lambda i: abs(self.wv_array[i]-wv)))
+
+        #bands = [40, 144]
+        logging.debug("getbandnumbers : bands = %s", bands)
 
         return bands
 
@@ -353,8 +362,11 @@ class SP_EXTRACT:
         logging.debug("sp_extract : make_plots : ref_array[0,:] = %s", ref_array[0,:] )
         logging.debug("sp_extract : make_plots : ref_array = %s", ref_array)
 
-
+        logging.debug("make_plot : before cleaning wv_array, len(self.wv_array) = %s", len(self.wv_array))
         self.wv_array = self.clean_data(self.wv_array)  # lrm
+
+        logging.debug("make_plot : after cleaning wv_array, len(self.wv_array) = %s", len(self.wv_array))
+
         ref_array = self.clean_data(ref_array)
         #maxwv = int(args.wv_limits)  lrm
         maxwv = int(self.wv_limits)
