@@ -36,6 +36,13 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 
 class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
+    # Default shoulder values
+    default1umLeft = 752.8
+    default1umRight = 1547.7
+    default2umLeft = 1733.7
+    default2umRight = 2508.1
+
+
     # wavelengths = [  512.6,   518.4,   524.7,   530.4,   536.5,   542.8,   548.7,
     #      554.5,   560.5,   566.7,   572.6,   578.5,   584.5,   590.6,
     #      596.7,   602.5,   608.6,   614.6,   620.5,   626.7,   632.7,
@@ -86,11 +93,30 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # self.<objectname>, and you can use autoconnect slots - see
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
+
+        # Initialize albedo
+        self.isHighlands = False
+
+        # Initialize 1um, 2um left & right shoulder values
+        self.oneUmLeftShoulder = 752.8
+        self.oneUmRightShoulder = 1547.7
+        self.twoUmLeftShoulder = 1700.
+        self.twoUmRightShoulder = 2200.
+
+        # set min/max values of 1um, 2um plots
+        self.oneUmMin = 512.
+        self.oneUmMax = 1645.
+        self.twoUmMin = 1644.
+        self.twoUmMax = 2588.
+
+
         self.setupUi(self)
 
         self.initgui()
         self.window_key = 0
         self.plot_windows = {}
+
+
 
     def initgui(self):
         """Set up the gui"""
@@ -101,22 +127,27 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.plot_selected.clicked.connect(self.plot)
 
         # Mare/Highlands radio buttons
-        self.isHighlands = False
         self.radioButton_2.setChecked(True)  # set Mare to true
         self.radioButton_2.toggled.connect(lambda: self.btnstate(self.radioButton_2))
 
         # Line boxes
         #QtextEdit.textChanged.connect(your_method_to_put_text_somewhere_else)
-        # left shoulder
-        self.lineEdit.setText("752.8")
-        self.leftShoulder = 752.8
-        self.lineEdit.textChanged.connect(lambda: self.textstate(self.lineEdit))
 
-        # right shoulder
-        self.lineEdit_2.setText("1547.7")
-        self.rightShoulder = 1547.7
-        self.lineEdit_2.textChanged.connect(lambda: self.textstate_right(self.lineEdit_2))
+
+        # 1um left shoulder
+        self.lineEdit.setText(str(self.oneUmLeftShoulder))
+        self.lineEdit.textChanged.connect(lambda: self.textstate_1um_left(self.lineEdit))
+
+        # 1um  right shoulder
+        self.lineEdit_2.setText(str(self.oneUmRightShoulder))
+        self.lineEdit_2.textChanged.connect(lambda: self.textstate_1um_right(self.lineEdit_2))
         #self.lineEdit_2.textChanged.connect(lambda: self.lineEdit_2.text())
+
+        # 2um left shoulder
+        self.lineEdit_4.textChanged.connect(lambda: self.textstate_2um_left(self.lineEdit_4))
+
+        # 2um right shoulder
+        self.lineEdit_3.textChanged.connect(lambda: self.textstate_1um_right(self.lineEdit_3))
 
     def btnstate(self, b):
         """Get the value of the radio buttons, Mare or Highlands"""
@@ -130,53 +161,46 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
                 print b.text() + " is deselected, isHighlands = " + str(self.isHighlands)
 
 
-    def textstate(self, t):
-        print "In lineEdit textstate ***************************************"
+    def textstate_1um_left(self, t):
+        print "In lineEdit textstate_1um_left ***************************************"
         print ("t.text() = {}".format(t.text()))
-        # get the text
-        #if lineEdit.text
-        self.leftShoulder = float(t.text())
+        # get the text, make sure it is a valid number
+        try:
+            self.oneUmLeftShoulder = float(t.text())
+        except:
+            self.oneUmLeftShoulder = SpectralProfilerDockWidget.default1umLeft
+            #t.setText(str(SpectralProfilerDockWidget.default1umLeft))
 
-    def textstate_right(self, t):
-        print "In lineEdit textstate_right ***************************************"
+    def textstate_1um_right(self, t):
+        print "In lineEdit textstate_1um_right ***************************************"
         print ("t.text() = {}".format(t.text()))
-        # get the text
-        # if lineEdit.text
-        self.rightShoulder = float(t.text())
+        # get the text, make sure it is a valid number
+        try:
+            self.oneUmRightShoulder = float(t.text())
+        except:
+            self.oneUmRightShoulder = SpectralProfilerDockWidget.default1umRight
 
+    def textstate_2um_left(self, t):
+        print "In lineEdit textstate_2um_left ***************************************"
+        print ("t.text() = {}".format(t.text()))
+        # get the text, make sure it is a valid number
+        try:
+            self.twoUmLeftShoulder = float(t.text())
+        except:
+            self.twoUmLeftShoulder = SpectralProfilerDockWidget.default2umLeft
 
-
-
-        # would need this if there is connect function for the Highlands button
-        # if b.text() == "Highlands":
-        #     if b.isChecked() == True:
-        #         print b.text() + " is selected"
-        #         self.isHighlands = True
-        #     else:
-        #         print b.text() + " is deselected"
-        #         self.isHighlands = False
-
+    def textstate_2um_right(self, t):
+        print "In lineEdit textstate_2um_right ***************************************"
+        print ("t.text() = {}".format(t.text()))
+        # get the text, make sure it is a valid number
+        try:
+            self.oneUmRightShoulder = float(t.text())
+        except:
+            self.oneUmRightShoulder = SpectralProfilerDockWidget.default2umRight
 
     # This is called when "Plot Selected" button is hit
     def plot(self):
         print("spectralprofiler_dockwidget : plot")
-
-        # pcorrect = None
-        # for i in range(self.correction_vlb.count()):
-        #     widget = self.correction_vlb.itemAt(i).widget()
-        #     if isinstance(widget, QtGui.QRadioButton):
-        #         if widget.isChecked():
-        #             pcorrect = widget.text()
-
-        # get the value of the radio buttons
-        # pcorrect = None
-        # for i in range(self.groupBox.count()):
-        #     widget = self.groupBox.itemAt(i).widget()
-        #     if isinstance(widget, QtGui.QRadioButton):
-        #        if widget.isChecked():
-        #           pcorrect = widget.text()
-
-
 
 
         # Create the plot dialog
@@ -248,8 +272,5 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         # Plot the spectral data
         dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
-                    self.leftShoulder, self.rightShoulder)
-
-        # CALL sp_extract_plugin here????????
-        # spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle)
-        # spectraPlot.make_plots()
+                    self.oneUmLeftShoulder, self.oneUmRightShoulder, self.twoUmLeftShoulder, self.twoUmRightShoulder,
+                    self.oneUmMin, self.oneUmMax, self.twoUmMin, self.twoUmMax)

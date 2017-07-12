@@ -36,7 +36,7 @@ class SP_EXTRACT:
         #     args.observation = [0]
 
     def __init__(self, spectra, emission_angle, incidence_angle, phase_angle, isHighlands,
-                 leftShoulder, rightShoulder):
+                 leftShoulder, rightShoulder, plotMin, plotMax):
         # Set up logging
 
         # Get the directory name of the qgis plugin
@@ -53,7 +53,10 @@ class SP_EXTRACT:
             #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
             self.albedo_tab = self.plugin_path + r'.\data\albedo\low_albedo_coefficients.csv'
 
-        self.wv_limits = 1652
+        #self.wv_limits = 1652
+        self.wv_MinLimits = plotMin
+        self.wv_MaxLimits = plotMax
+
         self.save = True
         self.observation = [0]
         self.emission_angle = np.asarray(emission_angle)
@@ -369,9 +372,12 @@ class SP_EXTRACT:
 
         ref_array = self.clean_data(ref_array)
         #maxwv = int(args.wv_limits)  lrm
-        maxwv = int(self.wv_limits)
+        minwv = int(self.wv_MinLimits)
+        maxwv = int(self.wv_MaxLimits)
 
-        extent = np.where(self.wv_array <= maxwv)
+        #extent = np.where(self.wv_array <= maxwv)
+        # & will give you an elementwise and (the parentheses are necessary)
+        extent = np.where((self.wv_array <= maxwv) & (self.wv_array >= minwv))
 
         logging.debug("sp_extract : make_plots : extent = %s", extent)
 
@@ -422,6 +428,12 @@ class SP_EXTRACT:
             #Do the plotting
             #fig = plt.figure(self.observation[obs], figsize=(12, 12))
             fig = plt.figure(self.observation[obs], figsize=(10, 10))
+
+            # kluge for testing :
+            if (self.wv_MinLimits > 1600.):
+                fig = plt.figure(2, figsize=(10, 10))
+            else:
+                fig = plt.figure(1, figsize=(10, 10))
 
 
             fig.subplots_adjust(hspace=0.75)

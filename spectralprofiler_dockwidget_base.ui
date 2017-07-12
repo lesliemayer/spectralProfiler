@@ -80,17 +80,17 @@
             <widget class="QGroupBox" name="groupBox_10">
              <property name="geometry">
               <rect>
-               <x>16</x>
-               <y>34</y>
+               <x>10</x>
+               <y>30</y>
                <width>261</width>
-               <height>221</height>
+               <height>431</height>
               </rect>
              </property>
              <property name="title">
               <string>Plot Options</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_11">
-              <item row="1" column="1">
+              <item row="1" column="1" alignment="Qt::AlignTop">
                <widget class="QGroupBox" name="groupBox">
                 <property name="title">
                  <string>Albedo</string>
@@ -124,9 +124,12 @@
                   <string>Highlands</string>
                  </property>
                 </widget>
+                <zorder>radioButton_2</zorder>
+                <zorder>radioButton_3</zorder>
+                <zorder>groupBox_3</zorder>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="1">
                <widget class="QGroupBox" name="groupBox_3">
                 <property name="title">
                  <string>Continuum Slope</string>
@@ -134,10 +137,10 @@
                 <widget class="QLineEdit" name="lineEdit_2">
                  <property name="geometry">
                   <rect>
-                   <x>10</x>
-                   <y>160</y>
+                   <x>130</x>
+                   <y>70</y>
                    <width>101</width>
-                   <height>16</height>
+                   <height>20</height>
                   </rect>
                  </property>
                 </widget>
@@ -154,9 +157,9 @@
                 <widget class="QLabel" name="label">
                  <property name="geometry">
                   <rect>
-                   <x>30</x>
+                   <x>10</x>
                    <y>40</y>
-                   <width>71</width>
+                   <width>101</width>
                    <height>20</height>
                   </rect>
                  </property>
@@ -167,8 +170,8 @@
                 <widget class="QLabel" name="label_2">
                  <property name="geometry">
                   <rect>
-                   <x>30</x>
-                   <y>130</y>
+                   <x>140</x>
+                   <y>40</y>
                    <width>71</width>
                    <height>20</height>
                   </rect>
@@ -177,10 +180,90 @@
                   <string>Right Shoulder</string>
                  </property>
                 </widget>
+                <widget class="QLabel" name="label_3">
+                 <property name="geometry">
+                  <rect>
+                   <x>106</x>
+                   <y>20</y>
+                   <width>31</width>
+                   <height>20</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>1 um</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="lineEdit_4">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>170</y>
+                   <width>101</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>1733.7</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_4">
+                 <property name="geometry">
+                  <rect>
+                   <x>107</x>
+                   <y>120</y>
+                   <width>31</width>
+                   <height>20</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>2 um</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_5">
+                 <property name="geometry">
+                  <rect>
+                   <x>16</x>
+                   <y>140</y>
+                   <width>71</width>
+                   <height>20</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Left Shoulder</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_6">
+                 <property name="geometry">
+                  <rect>
+                   <x>136</x>
+                   <y>140</y>
+                   <width>71</width>
+                   <height>20</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Right Shoulder</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="lineEdit_3">
+                 <property name="geometry">
+                  <rect>
+                   <x>140</x>
+                   <y>169</y>
+                   <width>91</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>2508.1</string>
+                 </property>
+                </widget>
                </widget>
               </item>
              </layout>
             </widget>
+            <zorder>groupBox_10</zorder>
+            <zorder>groupBox_3</zorder>
            </widget>
           </item>
           <item>

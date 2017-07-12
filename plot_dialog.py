@@ -38,6 +38,7 @@ class PlotDialog():
     def set_spectra(self, spectra):
 
         self.data = spectra
+
         # for k, obs in self.data.iteritems():
         #     parent = QtGui.QStandardItem(k)
         #     for label, values in obs.iteritems():
@@ -49,9 +50,14 @@ class PlotDialog():
             #self.spectratree.model().appendRow(parent)
 
 
-    #def plot(self):
     def plot(self, emission_angle, incidence_angle, phase_angle,
-             isHighlands, leftShoulder, rightShoulder):
+             isHighlands,
+             oneUmLeftShoulder, oneUmRightShoulder, twoUmLeftShoulder, twoUmRightShoulder,
+             oneUmMin, oneUmMax, twoUmMin, twoUmMax):
+
+    # dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
+    #             self.oneUmLeftShoulder, self.oneUmRightShoulder, self.twoUmLeftShoulder, self.twoUmRightShoulder,
+    #             self.oneUmMin, self.oneUmMax, self.twoUmMin, self.twoUmMax)
 
         # lrm
         # if pcorrect == 'Mare':
@@ -88,12 +94,19 @@ class PlotDialog():
 
                 df['CC'] = spectra
 
-                logging.debug("plot_dialog : plot : leftShoulder = %s", leftShoulder)
-                logging.debug("plot_dialog : plot : rightShoulder = %s", rightShoulder)
+                logging.debug("plot_dialog : plot : oneUmLeftShoulder = %s", oneUmLeftShoulder)
+                logging.debug("plot_dialog : plot : oneUmrightShoulder = %s", oneUmRightShoulder)
 
 
-                # initialize SP_EXTRACT
+                # initialize 1um SP_EXTRACT
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
-                                         isHighlands, leftShoulder, rightShoulder)
+                                         isHighlands, oneUmLeftShoulder, oneUmRightShoulder,
+                                         oneUmMin, oneUmMax)
+                spectraPlot.make_plots()
+
+                # initialize 2um SP_EXTRACT
+                spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
+                                         isHighlands, twoUmLeftShoulder, twoUmRightShoulder,
+                                         twoUmMin, twoUmMax)
                 spectraPlot.make_plots()
 
