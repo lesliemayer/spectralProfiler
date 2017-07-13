@@ -53,7 +53,7 @@ class PlotDialog():
     def plot(self, emission_angle, incidence_angle, phase_angle,
              isHighlands,
              oneUmLeftShoulder, oneUmRightShoulder, twoUmLeftShoulder, twoUmRightShoulder,
-             oneUmMin, oneUmMax, twoUmMin, twoUmMax):
+             oneUmMin, oneUmMax, twoUmMin, twoUmMax, obsId):
 
     # dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
     #             self.oneUmLeftShoulder, self.oneUmRightShoulder, self.twoUmLeftShoulder, self.twoUmRightShoulder,
@@ -103,12 +103,12 @@ class PlotDialog():
                 # initialize 1um SP_EXTRACT
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
                                          isHighlands, oneUmLeftShoulder, oneUmRightShoulder,
-                                         oneUmMin, oneUmMax)
+                                         oneUmMin, oneUmMax, obsId)
                 spectraPlot.make_plots()
 
                 # initialize 2um SP_EXTRACT
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
                                          isHighlands, twoUmLeftShoulder, twoUmRightShoulder,
-                                         twoUmMin, twoUmMax)
+                                         twoUmMin, twoUmMax, obsId)
                 spectraPlot.make_plots()
 

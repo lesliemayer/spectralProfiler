@@ -117,7 +117,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.plot_windows = {}
 
         # initialize number of observations selected
-        self.numObs = 0
+        #self.numObs = 0
 
     def initgui(self):
         """Set up the gui"""
@@ -203,6 +203,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
 
     def checkNumObs(self):
+        """Check to see that 1, and only 1 observation is selected"""
         print("checking number of obs selected")
         v_layer = self.parent.v_layer
         selected = v_layer.selectedFeatures()
@@ -265,8 +266,6 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
             id = s.attribute('OBSERVATION_ID')
             d[fname].append(id)
 
-
-
         # d is filename and observation numbers
         # u'SP_2C_02_03860_S136_E3557.spc': [20, 21, 22, 23, 24, 25, 26, 27]
         print("spectralprofiler_dockwidget : plot : len(d[fname]) = {}".format(len(d[fname])))
@@ -301,4 +300,5 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # Plot the spectral data
         dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
                     self.oneUmLeftShoulder, self.oneUmRightShoulder, self.twoUmLeftShoulder, self.twoUmRightShoulder,
-                    self.oneUmMin, self.oneUmMax, self.twoUmMin, self.twoUmMax)
+                    self.oneUmMin, self.oneUmMax, self.twoUmMin, self.twoUmMax,
+                    id)
