@@ -399,6 +399,11 @@ class SP_EXTRACT:
         #Copy the unphotometrically corrected array
         input_refarray = np.copy(ref_array)
 
+        logging.debug("sp_extract : make_plots  : len(input_refarray[0][extent]) = %s", len(input_refarray[0][extent]))
+        logging.debug("sp_extract : make_plots  : input_refarray[0][extent] = %s", input_refarray[0][extent])
+        logging.debug("sp_extract : make_plots  : min(input_refarray[0][extent]) = %s", min(input_refarray[0][extent]))
+        logging.debug("sp_extract : make_plots  : max(input_refarray[0][extent]) = %s", max(input_refarray[0][extent]))
+
         logging.debug("sp_extract : make_plots : len(coefficient_table) = %s", len(coefficient_table))
 
         #Perform the photometric correction
@@ -424,18 +429,22 @@ class SP_EXTRACT:
 
         #TODO If the save flag is true we could save out all observations to CSV
 
+
         for obs in range(len(self.observation)):  # lrm
             #Do the plotting
-            #fig = plt.figure(self.observation[obs], figsize=(12, 12))
-            fig = plt.figure(self.observation[obs], figsize=(10, 10))
 
-            # kluge for testing :
+            # Determine which plot this is (probably not the best way to do this!!! :
             if (self.wv_MinLimits > 1600.):
                 fig = plt.figure(2, figsize=(10, 10))
+                mainTitle = '2$\mu$m Observation #  '
             else:
                 fig = plt.figure(1, figsize=(10, 10))
+                mainTitle = '1$\mu$m Observation #  '
 
+            # Main plot title
+            fig.suptitle(mainTitle, fontsize=12)
 
+            # Set the horizontal spacing
             fig.subplots_adjust(hspace=0.75)
 
             ax1 = subplot(411)
@@ -446,7 +455,7 @@ class SP_EXTRACT:
             ax1.set_xticklabels(self.wv_array[extent][::4], rotation=45, fontsize=8)
             ax1.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Reflectance', fontsize=10)
-            ax1.set_yticklabels(input_refarray[obs][extent],fontsize=8)
+            #ax1.set_yticklabels(input_refarray[obs][extent],fontsize=8)
             title('Level 2B2 Data', fontsize=12)
 
             ax2 = subplot(412)
@@ -457,7 +466,7 @@ class SP_EXTRACT:
             ax2.set_xticklabels(self.wv_array[extent][::4], rotation=45, fontsize=8)
             ax2.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Reflectance', fontsize=10)
-            ax2.set_yticklabels(input_refarray[obs][extent],fontsize=8)
+            #ax2.set_yticklabels(input_refarray[obs][extent],fontsize=8)
             title('Photometrically Corrected Data', fontsize=12)
 
             ax3 = subplot(413)
@@ -469,7 +478,7 @@ class SP_EXTRACT:
             ax3.set_xticklabels(self.wv_array[extent][::4], rotation=45, fontsize=8)
             ax3.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Reflectance', fontsize=10)
-            ax3.set_yticklabels(input_refarray[obs][extent],fontsize=8)
+            #ax3.set_yticklabels(input_refarray[obs][extent],fontsize=8)
             title('Continuum Slope', fontsize=12)
 
             ax4 = subplot(414)
@@ -480,7 +489,7 @@ class SP_EXTRACT:
             ax4.set_xticklabels(self.wv_array[extent][::4], rotation=45, fontsize=8)
             ax4.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Relative Reflectance', fontsize=10)
-            ax4.set_yticklabels(input_refarray[obs][extent],fontsize=8)
+            #ax4.set_yticklabels(input_refarray[obs][extent],fontsize=8)
             title('Continuum Removed Spectrum', fontsize=12)
 
             draw()
