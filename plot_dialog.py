@@ -71,8 +71,6 @@ class PlotDialog():
         key = 'REF1'  # use RAW, REF1, REF2, or QA  spectral data
 
 
-        # offset_interval = 0  not needed : lrm
-
         for fname, panel in self.data.iteritems():
             for k, df in panel.iteritems():
 
@@ -103,12 +101,12 @@ class PlotDialog():
                 # initialize 1um SP_EXTRACT
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
                                          isHighlands, oneUmLeftShoulder, oneUmRightShoulder,
-                                         oneUmMin, oneUmMax, obsId)
+                                         oneUmMin, oneUmMax, obsId, fname)
                 spectraPlot.make_plots()
 
                 # initialize 2um SP_EXTRACT
                 spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
                                          isHighlands, twoUmLeftShoulder, twoUmRightShoulder,
-                                         twoUmMin, twoUmMax, obsId)
+                                         twoUmMin, twoUmMax, obsId, fname)
                 spectraPlot.make_plots()
 

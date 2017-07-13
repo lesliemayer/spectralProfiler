@@ -36,7 +36,7 @@ class SP_EXTRACT:
         #     args.observation = [0]
 
     def __init__(self, spectra, emission_angle, incidence_angle, phase_angle, isHighlands,
-                 leftShoulder, rightShoulder, plotMin, plotMax, obsID):
+                 leftShoulder, rightShoulder, plotMin, plotMax, obsID, fileName):
         # Set up logging
 
         # Get the directory name of the qgis plugin
@@ -81,6 +81,9 @@ class SP_EXTRACT:
 
         # number of observations
         self.obsId = obsID
+
+        # filename
+        self.fileName = fileName
 
 
     # Not using this - lrm ====================================================================================
@@ -439,10 +442,10 @@ class SP_EXTRACT:
             # Determine which plot this is (probably not the best way to do this!!! :
             if (self.wv_MinLimits > 1600.):
                 fig = plt.figure(2, figsize=(10, 10))
-                mainTitle = '2$\mu$m Observation  ' + str(self.obsId)
+                mainTitle = '2$\mu$m Observation  ' + str(self.obsId) + '   ' + self.fileName
             else:
                 fig = plt.figure(1, figsize=(10, 10))
-                mainTitle = '1$\mu$m Observation ' + str(self.obsId)
+                mainTitle = '1$\mu$m Observation ' + str(self.obsId) + '   ' + self.fileName
 
             # Main plot title
             fig.suptitle(mainTitle, fontsize=12)
