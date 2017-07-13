@@ -87,15 +87,17 @@ class PlotDialog():
 
                 print("plot_dialog : plot : spectra = {}".format(spectra))
 
+                # *****************************************************************************
                 # multiply dictionary df keys by .0001 as done in sp_extract :
-                # Multiply every value in my_dict by 2  - DON'T DO THIS,  DO IN SP_EXTRACT
+                # Multiply every value in my_dict by 2
                 # for key in df:
-                #     df[key] *= .0001
+                #     df[key] *= .0001   numbers will be way off if you do this **********
+                # *****************************************************************************
 
                 df['CC'] = spectra
 
                 logging.debug("plot_dialog : plot : oneUmLeftShoulder = %s", oneUmLeftShoulder)
-                logging.debug("plot_dialog : plot : oneUmrightShoulder = %s", oneUmRightShoulder)
+                logging.debug("plot_dialog : plot : oneUmRightShoulder = %s", oneUmRightShoulder)
 
 
                 # initialize 1um SP_EXTRACT
