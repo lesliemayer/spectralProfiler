@@ -116,7 +116,8 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.window_key = 0
         self.plot_windows = {}
 
-
+        # initialize number of observations selected
+        self.numObs = 0
 
     def initgui(self):
         """Set up the gui"""
@@ -124,7 +125,9 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         # #Spectral Smoothing
 
         # plugin won't load if this is commented out
-        self.plot_selected.clicked.connect(self.plot)
+        #self.plot_selected.clicked.connect(self.plot)
+        # connect to function to check number of obs selected
+        self.plot_selected.clicked.connect(self.checkNumObs)
 
         # Mare/Highlands radio buttons
         self.radioButton_2.setChecked(True)  # set Mare to true
@@ -198,6 +201,30 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         except:
             self.oneUmRightShoulder = SpectralProfilerDockWidget.default2umRight
 
+
+    def checkNumObs(self):
+        print("checking number of obs selected")
+        v_layer = self.parent.v_layer
+        selected = v_layer.selectedFeatures()
+        print("checkNumbObs : len(selected) = {}".format(len(selected)))
+        #id = s.attribute('OBSERVATION_ID')
+        if (len(selected) > 1):
+            print("MORE THAN 1 OBS")
+            self.showMessage()
+        elif (len(selected) <= 0):
+            print("Have to select at least one obs")
+            self.showMessage()
+        else:
+            print("1 OBS :-)")
+            self.plot()
+
+    def showMessage(self):
+        msgBox = QtGui.QMessageBox()
+        msgBox.setText("Select 1 observation to plot")
+        msgBox.setStandardButtons(QtGui.QMessageBox.Ok)
+        msgBox.exec_()
+
+
     # This is called when "Plot Selected" button is hit
     def plot(self):
         print("spectralprofiler_dockwidget : plot")
@@ -242,6 +269,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
         # d is filename and observation numbers
         # u'SP_2C_02_03860_S136_E3557.spc': [20, 21, 22, 23, 24, 25, 26, 27]
+        print("spectralprofiler_dockwidget : plot : len(d[fname]) = {}".format(len(d[fname])))
         print("spectralprofiler_dockwidget : plot : d = {}".format(d))
 
         # get the angles info for selected observations - lrm
