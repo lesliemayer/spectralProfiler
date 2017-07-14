@@ -53,7 +53,7 @@ class SP_EXTRACT:
             #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
             self.albedo_tab = self.plugin_path + r'.\data\albedo\low_albedo_coefficients.csv'
 
-        #self.wv_limits = 1652
+        # set plot x min, max
         self.wv_MinLimits = plotMin
         self.wv_MaxLimits = plotMax
 
@@ -485,7 +485,9 @@ class SP_EXTRACT:
             ax3.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Reflectance', fontsize=10)
             #ax3.set_yticklabels(input_refarray[obs][extent],fontsize=8)
-            title('Continuum Slope', fontsize=12)
+            contTitle = 'Spectral Continuum  Left: ' + str(self.leftShoulder) + ' right: ' + str(self.rightShoulder)
+            #title('Continuum Slope', fontsize=12)
+            title(contTitle, fontsize=12)
 
             ax4 = subplot(414)
             grid(alpha=.5)
