@@ -442,10 +442,10 @@ class SP_EXTRACT:
             # Determine which plot this is (probably not the best way to do this!!! :
             if (self.wv_MinLimits > 1600.):
                 fig = plt.figure(2, figsize=(10, 10))
-                mainTitle = '2$\mu$m Observation  ' + str(self.obsId) + '   ' + self.fileName
+                mainTitle = '2$\mu$m Observation:  ' + str(self.obsId) + '  File: ' + self.fileName
             else:
                 fig = plt.figure(1, figsize=(10, 10))
-                mainTitle = '1$\mu$m Observation ' + str(self.obsId) + '   ' + self.fileName
+                mainTitle = '1$\mu$m Observation: ' + str(self.obsId) + '   File: ' + self.fileName
 
             # Main plot title
             fig.suptitle(mainTitle, fontsize=12)
