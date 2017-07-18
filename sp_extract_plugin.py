@@ -2,12 +2,12 @@ from __future__ import division
 
 from struct import unpack, unpack_from
 
-import sys
+#import sys
 import numpy as np
-from matplotlib.collections import LineCollection
+#from matplotlib.collections import LineCollection
 from pylab import *
 import argparse
-import os
+#import os
 import math
 import logging  # lrm
 import os  # for getting the plugin path
@@ -489,6 +489,16 @@ class SP_EXTRACT:
             #title('Continuum Slope', fontsize=12)
             title(contTitle, fontsize=12)
 
+            # Calculate the area under the curves
+            areaContinuum = np.trapz(continuum_slope_array[obs][extent], x=self.wv_array[extent])
+            logging.debug("Area under continuum slope curve = %s", areaContinuum)
+
+            areaCorrected = np.trapz(photometrically_corrected_ref_array[obs][extent], x=self.wv_array[extent])
+            logging.debug("Area under photometrically corrected curve = %s", areaCorrected)
+
+
+
+
             ax4 = subplot(414)
             grid(alpha=.5)
             plot(self.wv_array[extent], ref_array[obs][extent], linewidth=1.5)
@@ -499,6 +509,8 @@ class SP_EXTRACT:
             ylabel('Relative Reflectance', fontsize=10)
             #ax4.set_yticklabels(input_refarray[obs][extent],fontsize=8)
             title('Continuum Removed Spectrum', fontsize=12)
+
+
 
             draw()
 
