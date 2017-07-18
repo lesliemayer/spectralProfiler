@@ -98,10 +98,10 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.isHighlands = False
 
         # Initialize 1um, 2um left & right shoulder values
-        self.oneUmLeftShoulder = 752.8
-        self.oneUmRightShoulder = 1547.7
-        self.twoUmLeftShoulder = 1700.
-        self.twoUmRightShoulder = 2200.
+        self.oneUmLeftShoulder = 700.
+        self.oneUmRightShoulder = 1450.
+        self.twoUmLeftShoulder = 1450.
+        self.twoUmRightShoulder = 2450.
 
         # set min/max values of 1um, 2um plots
         self.oneUmMin = 512.
@@ -147,9 +147,11 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         #self.lineEdit_2.textChanged.connect(lambda: self.lineEdit_2.text())
 
         # 2um left shoulder
+        self.lineEdit_4.setText(str(self.twoUmLeftShoulder))
         self.lineEdit_4.textChanged.connect(lambda: self.textstate_2um_left(self.lineEdit_4))
 
         # 2um right shoulder
+        self.lineEdit_3.setText(str(self.twoUmRightShoulder))
         self.lineEdit_3.textChanged.connect(lambda: self.textstate_1um_right(self.lineEdit_3))
 
     def btnstate(self, b):
