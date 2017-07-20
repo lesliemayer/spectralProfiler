@@ -429,8 +429,8 @@ class SP_EXTRACT:
         bands = self.getbandnumbers() # lrm
 
         # Get the left-shoulder -> right-shoulder extent
-        minMaxExtent = range(bands[0],bands[-1]+1)  # want to include band[-1] in the extent
-        logging.debug("minMaxExtent : %s",minMaxExtent)
+        leftRightExtent = range(bands[0],bands[-1]+1)  # want to include band[-1] in the extent
+        logging.debug("leftRightExtent : %s",leftRightExtent)
 
         #Continuum correct all observations
         for obs_id in range(len(ref_array)):
@@ -493,10 +493,10 @@ class SP_EXTRACT:
             title(contTitle, fontsize=12)
 
             # Calculate the area under the curves
-            areaContinuum = np.trapz(continuum_slope_array[obs][extent], x=self.wv_array[extent])
+            areaContinuum = np.trapz(continuum_slope_array[obs][leftRightExtent], x=self.wv_array[leftRightExtent])
             logging.debug("Area under continuum slope curve = %s", areaContinuum)
 
-            areaCorrected = np.trapz(photometrically_corrected_ref_array[obs][extent], x=self.wv_array[extent])
+            areaCorrected = np.trapz(photometrically_corrected_ref_array[obs][leftRightExtent], x=self.wv_array[leftRightExtent])
             logging.debug("Area under photometrically corrected curve = %s", areaCorrected)
 
 
