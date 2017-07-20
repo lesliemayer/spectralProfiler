@@ -388,7 +388,6 @@ class SP_EXTRACT:
         logging.debug("sp_extract : make_plots : extent = %s", extent)
 
         #Parse the supplemental table to get photometric correction coefficients
-        #coefficient_table = parse_coefficients(args.albedo_tab)
         coefficient_table = self.parse_coefficients(self.albedo_tab)
 
 
@@ -428,6 +427,10 @@ class SP_EXTRACT:
         #bands = getbandnumbers(wv_array, 752.8,1547.7)
         #bands = self.getbandnumbers(self.leftShoulder, self.rightShoulder)  # lrm fix this ***
         bands = self.getbandnumbers() # lrm
+
+        # Get the left-shoulder -> right-shoulder extent
+        minMaxExtent = range(bands[0],bands[-1]+1)  # want to include band[-1] in the extent
+        logging.debug("minMaxExtent : %s",minMaxExtent)
 
         #Continuum correct all observations
         for obs_id in range(len(ref_array)):
