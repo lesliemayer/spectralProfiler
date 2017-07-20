@@ -499,7 +499,8 @@ class SP_EXTRACT:
             areaCorrected = np.trapz(photometrically_corrected_ref_array[obs][leftRightExtent], x=self.wv_array[leftRightExtent])
             logging.debug("Area under photometrically corrected curve = %s", areaCorrected)
 
-
+            bandArea = areaContinuum - areaCorrected
+            logging.debug("bandArea = %s", bandArea)
 
 
             ax4 = subplot(414)
