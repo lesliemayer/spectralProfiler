@@ -99,14 +99,19 @@ class PlotDialog():
 
 
                 # initialize 1um SP_EXTRACT
-                spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
+                spectraPlot1um = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
                                          isHighlands, oneUmLeftShoulder, oneUmRightShoulder,
                                          oneUmMin, oneUmMax, obsId, fname)
-                spectraPlot.make_plots()
+                spectraPlot1um.make_plots()
 
                 # initialize 2um SP_EXTRACT
-                spectraPlot = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
+                spectraPlot2um = SP_EXTRACT(spectra, emission_angle, incidence_angle, phase_angle,
                                          isHighlands, twoUmLeftShoulder, twoUmRightShoulder,
                                          twoUmMin, twoUmMax, obsId, fname)
-                spectraPlot.make_plots()
+                spectraPlot2um.make_plots()
+
+                # calculate Band Area Ratio
+                bar = spectraPlot2um.get_bandArea()/spectraPlot1um.get_bandArea()
+                logging.debug("band area ratio = %s",bar)
+
 

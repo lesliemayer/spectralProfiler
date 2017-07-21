@@ -78,6 +78,7 @@ class SP_EXTRACT:
         self.rightShoulder = rightShoulder
         logging.debug("sp_extract_plugin : __init__ : self.leftShoulder = %s", self.leftShoulder)
         logging.debug("sp_extract_plugin : __init__ : self.rightShoulder = %s", self.rightShoulder)
+        self.bandArea = None
 
         # number of observations
         self.obsId = obsID
@@ -499,8 +500,9 @@ class SP_EXTRACT:
             areaCorrected = np.trapz(photometrically_corrected_ref_array[obs][leftRightExtent], x=self.wv_array[leftRightExtent])
             logging.debug("Area under photometrically corrected curve = %s", areaCorrected)
 
-            bandArea = areaContinuum - areaCorrected
-            logging.debug("bandArea = %s", bandArea)
+            # Take difference of area under the 2 curves
+            self.bandArea = areaContinuum - areaCorrected
+            logging.debug("self.bandArea = %s", self.bandArea)
 
 
             ax4 = subplot(414)
@@ -519,3 +521,6 @@ class SP_EXTRACT:
             draw()
 
         show()
+
+    def get_bandArea(self):
+        return self.bandArea
