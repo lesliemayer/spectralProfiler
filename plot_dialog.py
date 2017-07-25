@@ -1,28 +1,13 @@
 import os
 from PyQt4 import QtCore, QtGui, uic
 
-# from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-# # Original
-# #from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
-# # L. Mayer 04/28/2017 :
-# from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
-
-#from matplotlib.figure import Figure
-
 import logging
 
 from sp_extract_plugin import SP_EXTRACT
 
-#base = os.path.dirname(os.path.abspath(__file__))
-
-# the dialog box for the plotting window (not the main one)
-#ui_dialog, cls_dialog = uic.loadUiType(os.path.join(base, 'ui/plot_dialog.ui'))
-
-
 #class PlotDialog(cls_dialog, ui_dialog):
 class PlotDialog():
 
-    #def __init__(self, *args, **kwargs):
     def __init__(self):
         #super(PlotDialog, self).__init__(*args, **kwargs)
         #self.setupUi(self)
@@ -34,26 +19,46 @@ class PlotDialog():
         pass
 
 
-    # lrm : get the spectrum data??  *** or set the spectrum data !!!!
     def set_spectra(self, spectra):
+        '''Set object data to the input spectra'''
 
         self.data = spectra
-
-        # for k, obs in self.data.iteritems():
-        #     parent = QtGui.QStandardItem(k)
-        #     for label, values in obs.iteritems():
-        #         child = QtGui.QStandardItem('Observation {}'.format(label))
-        #         child.setFlags(QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable)
-        #         parent.appendRow(child)
-
-            # obs tree - don't need
-            #self.spectratree.model().appendRow(parent)
 
 
     def plot(self, emission_angle, incidence_angle, phase_angle,
              isHighlands,
              oneUmLeftShoulder, oneUmRightShoulder, twoUmLeftShoulder, twoUmRightShoulder,
              oneUmMin, oneUmMax, twoUmMin, twoUmMax, obsId):
+        '''Plot the spectral data.
+        Parameters
+        ----------
+        emission_angle : float
+            Emission angle of the observation
+        incidence_angle : float
+            Incidence angle of the observation
+        phase_angle : float
+            Phase angle of the observation
+        isHighlands : bool
+            Is this Highlands albedo?
+        oneUmLeftShoulder : float
+            Value of 1um left shoulder continuum slope
+        oneUmRightShoulder : float
+            Value of 1um right shoulder continuum slope
+        twoUmLeftShoulder : float
+            Value of 2um left shoulder continuum slope
+        twoUmRightShoulder : float
+            Value of 2um right shoulder continuum slope
+        oneUmMin : float
+            Min wavelength to plot for 1um data
+        oneUmMax : float
+            Max wavelength to plot for 1um data
+        twoUmMin : float
+            Min wavelength to plot for 2um data
+        twoUmMax : float
+            Max wavelength to plot for 2um data
+        obsId : integer
+            Which observation number this is
+        '''
 
     # dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
     #             self.oneUmLeftShoulder, self.oneUmRightShoulder, self.twoUmLeftShoulder, self.twoUmRightShoulder,
@@ -93,6 +98,9 @@ class PlotDialog():
                 # *****************************************************************************
 
                 df['CC'] = spectra
+
+                # Check for valid data
+                #remove_bad_values(spectra)
 
                 logging.debug("plot_dialog : plot : oneUmLeftShoulder = %s", oneUmLeftShoulder)
                 logging.debug("plot_dialog : plot : oneUmRightShoulder = %s", oneUmRightShoulder)
