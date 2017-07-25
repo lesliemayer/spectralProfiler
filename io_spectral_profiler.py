@@ -134,7 +134,7 @@ class Spectral_Profiler(object):
                         continue
                     self.spectra[i][k] = arrays[k][i]
 
-                if cleaned:
+                if cleaned:  # clean data based on the qa threshold
                     self.spectra[i] = self.spectra[i][self.spectra[i]['QA'] < qa_threshold]
 
             self.spectra = pd.Panel(self.spectra)
