@@ -28,7 +28,8 @@ class Spectral_Profiler(object):
 
     #def __init__(self, input_data, cleaned=True, qa_threshold=2000):
     # lrm - so I get all the data
-    def __init__(self, input_data, cleaned=False, qa_threshold=99999999999999):
+    def __init__(self, input_data, cleaned=False, qa_threshold=2000):  # works
+    #def __init__(self, input_data, cleaned=True, qa_threshold=800):  # this won't work because plotting routine needs all wavelengths
         """
         Read the .spc file, parse the label, and extract the spectra
 
@@ -49,7 +50,7 @@ class Spectral_Profiler(object):
                        if cleaned is True.
         """
 
-        print("io_spectral_profiler :__init__ : input_data = {}".format(input_data))
+        #print("io_spectral_profiler :__init__ : input_data = {}".format(input_data))
         logging.debug("io_spectral_profiler :__init__ : input_data = %s", input_data)
 
         label_dtype_map = {'IEEE_REAL':'f',
@@ -125,6 +126,7 @@ class Spectral_Profiler(object):
 
             self.wavelengths = pd.Series(arrays['WAV'][0])
 
+            logging.debug("io_spectral_profiler : setting spectra.....")
             self.spectra = {}
             for i in range(nrows):
                 self.spectra[i] = pd.DataFrame(index=self.wavelengths)
@@ -134,12 +136,18 @@ class Spectral_Profiler(object):
                         continue
                     self.spectra[i][k] = arrays[k][i]
 
+                logging.debug("io_spectral_profiler : shape of self.spectra[i] %s", self.spectra[i].shape)
+                logging.debug("io_spectral_profiler : i, self.spectra[i] = %s %s", i, self.spectra[i])
+                #logging.debug("io_spectral_profiler : [self.spectra[i]['QA'] < qa_threshold]= %s", [self.spectra[i]['QA'] < qa_threshold])
                 if cleaned:  # clean data based on the qa threshold
                     self.spectra[i] = self.spectra[i][self.spectra[i]['QA'] < qa_threshold]
+                logging.debug("io_spectral_profiler : After cleaning spectra")
+                logging.debug("io_spectral_profiler : shape of self.spectra[i] %s", self.spectra[i].shape)
+                logging.debug("io_spectral_profiler : i, self.spectra[i] = %s %s", i, self.spectra[i])
 
             self.spectra = pd.Panel(self.spectra)
 
-            logging.debug("io_spectral_profiler : qa_threshold = %s", qa_threshold)
+            #logging.debug("io_spectral_profiler : qa_threshold = %s", qa_threshold)
 
-            print("io_spectral_profiler : self.spectra = {}".format(self.spectra))
+            #print("io_spectral_profiler : self.spectra = {}".format(self.spectra))
             logging.debug("io_spectral_profiler : self.spectra = %s", self.spectra)

@@ -295,6 +295,7 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         for k, obs in d.iteritems():
             selected_spectra[k] = spectra[k].spectra.iloc[obs]
         print("spectralprofiler_dockwidget : plot : selected_spectra = {}".format(selected_spectra))
+
         # lrm : need this or crashes
         dialog.set_spectra(selected_spectra)
 
