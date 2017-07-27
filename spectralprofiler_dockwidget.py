@@ -154,6 +154,10 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.lineEdit_3.setText(str(self.twoUmRightShoulder))
         self.lineEdit_3.textChanged.connect(lambda: self.textstate_1um_right(self.lineEdit_3))
 
+        # For testing setting the text of band area ratio label
+        self.label_7.setText("Holy Grail")
+        
+
     def btnstate(self, b):
         """Get the value of the radio buttons, Mare or Highlands"""
 
