@@ -308,9 +308,9 @@ class SpectralProfilerDockWidget(QtGui.QDockWidget, FORM_CLASS):
 
 
         # Plot the spectral data
-        dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
+        bar = dialog.plot(emission_angle, incidence_angle, phase_angle, self.isHighlands,
                     self.oneUmLeftShoulder, self.oneUmRightShoulder, self.twoUmLeftShoulder, self.twoUmRightShoulder,
                     self.oneUmMin, self.oneUmMax, self.twoUmMin, self.twoUmMax,
                     id)
 
-        self.bar_text("It Changed!!!!")
+        self.bar_text(bar)

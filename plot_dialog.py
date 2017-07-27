@@ -126,4 +126,5 @@ class PlotDialog():
                 bar = spectraPlot2um.get_bandArea()/spectraPlot1um.get_bandArea()
                 logging.debug("band area ratio = %s",bar)
 
-
+                # return the band area ratio
+                return bar
