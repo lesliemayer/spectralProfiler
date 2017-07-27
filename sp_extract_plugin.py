@@ -240,9 +240,9 @@ class SP_EXTRACT:
 
         shoulders = [self.leftShoulder, self.rightShoulder]
 
-        logging.debug("getbandnumbers : self.wv_array = ")
-        for ii in range(len(self.wv_array)):
-            logging.debug("ii = %s, wv_array = %s",ii,self.wv_array[ii])
+        # logging.debug("getbandnumbers : self.wv_array = ")
+        # for ii in range(len(self.wv_array)):
+        #     logging.debug("ii = %s, wv_array = %s",ii,self.wv_array[ii])
 
         for wv in shoulders:
             # min(iterable[,key=func]) -> value
@@ -369,7 +369,7 @@ class SP_EXTRACT:
         logging.debug("sp_extract : make_plots : self.wv_array = %s", self.wv_array)
         logging.debug(" ")
         logging.debug("sp_extract : make_plots : ref_array.shape) = %s", ref_array.shape)
-        logging.debug("sp_extract : make_plots : ref_array[0,:] = %s", ref_array[0,:] )
+        #logging.debug("sp_extract : make_plots : ref_array[0,:] = %s", ref_array[0,:] )
         logging.debug("sp_extract : make_plots : ref_array = %s", ref_array)
 
         logging.debug("make_plot : before cleaning wv_array, len(self.wv_array) = %s", len(self.wv_array))
@@ -378,15 +378,19 @@ class SP_EXTRACT:
         logging.debug("make_plot : after cleaning wv_array, len(self.wv_array) = %s", len(self.wv_array))
 
         ref_array = self.clean_data(ref_array)
-        #maxwv = int(args.wv_limits)  lrm
+        logging.debug("sp_extract : make_plots : After cleaning ref_array : len(ref_array[0]) = %s", len(ref_array[0]))
+        logging.debug("sp_extract : make_plots : ref_array = %s", ref_array[0])
+
         minwv = int(self.wv_MinLimits)
         maxwv = int(self.wv_MaxLimits)
 
         #extent = np.where(self.wv_array <= maxwv)
         # & will give you an elementwise and (the parentheses are necessary)
-        extent = np.where((self.wv_array <= maxwv) & (self.wv_array >= minwv))
+        #extent = np.where((self.wv_array <= maxwv) & (self.wv_array >= minwv))
+        # extent = np.where((self.wv_array <= maxwv) & (self.wv_array >= minwv) &
+        #                   (input_refarray[0] >= minValid))
 
-        logging.debug("sp_extract : make_plots : extent = %s", extent)
+
 
         #Parse the supplemental table to get photometric correction coefficients
         coefficient_table = self.parse_coefficients(self.albedo_tab)
@@ -405,10 +409,24 @@ class SP_EXTRACT:
         #Copy the unphotometrically corrected array
         input_refarray = np.copy(ref_array)
 
-        logging.debug("sp_extract : make_plots  : len(input_refarray[0][extent]) = %s", len(input_refarray[0][extent]))
+        minValid = .0001
+        extent = np.where( (self.wv_array <= maxwv) & (self.wv_array >= minwv) &
+                           (input_refarray[0] >= minValid) )
+
+        logging.debug("sp_extract : make_plots : len(extent[0]) = %s", len(extent[0]))
+        logging.debug("sp_extract : make_plots : extent = %s", extent)
         logging.debug("sp_extract : make_plots  : input_refarray[0][extent] = %s", input_refarray[0][extent])
-        logging.debug("sp_extract : make_plots  : min(input_refarray[0][extent]) = %s", min(input_refarray[0][extent]))
-        logging.debug("sp_extract : make_plots  : max(input_refarray[0][extent]) = %s", max(input_refarray[0][extent]))
+
+        # logging.debug("sp_extract : AFTER CHECKING VALUES OF input_refarray[0][validExtent]")
+        # logging.debug("sp_extract : make_plots : len(validExtent[0]) = %s", len(validExtent[0]))
+        # logging.debug("sp_extract : make_plots : validExtent = %s", validExtent)
+        # logging.debug("sp_extract : make_plots : validExtent[0] = %s", validExtent[0])
+        #
+        #
+        # logging.debug("sp_extract : make_plots  : len(input_refarray[0][extent]) = %s", len(input_refarray[0][extent]))
+        # logging.debug("sp_extract : make_plots  : input_refarray[0][extent] = %s", input_refarray[0][extent])
+        # logging.debug("sp_extract : make_plots  : min(input_refarray[0][extent]) = %s", min(input_refarray[0][extent]))
+        # logging.debug("sp_extract : make_plots  : max(input_refarray[0][extent]) = %s", max(input_refarray[0][extent]))
 
         logging.debug("sp_extract : make_plots : len(coefficient_table) = %s", len(coefficient_table))
 
