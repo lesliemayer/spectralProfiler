@@ -24,6 +24,10 @@ class PlotDialog():
 
         self.data = spectra
 
+    def remove_bad_values(self):
+        #self.data =
+        pass
+
 
     def plot(self, emission_angle, incidence_angle, phase_angle,
              isHighlands,
