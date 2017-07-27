@@ -468,15 +468,19 @@ class SP_EXTRACT:
             # Determine which plot this is (probably not the best way to do this!!! :
             if (self.wv_MinLimits > 1600.):
                 fig = plt.figure(2, figsize=(10, 10))
-                mainTitle = '2$\mu$m Observation:  ' + str(self.obsId) + '  File: ' + self.fileName
+                mainTitle = '2$\mu$m Observation:  '  + str(self.obsId) # + '  File: ' + self.fileName
             else:
                 fig = plt.figure(1, figsize=(10, 10))
-                mainTitle = '1$\mu$m Observation: ' + str(self.obsId) + '   File: ' + self.fileName
+                mainTitle = '1$\mu$m Observation: ' # + str(self.obsId) # + '   File: ' + self.fileName
+
+            # Display name of file being plotted
+            fileTitle = '  File: ' + self.fileName
+            figtext(.5, .95, fileTitle, fontsize=11, ha='center', **sfont)
 
             # Main plot title
-            fig.suptitle(mainTitle, fontsize=12, **sfont)
+            fig.suptitle(mainTitle, fontsize=13, **sfont)
 
-            # see what this does............
+            # Display which albedo was used
             figtext(.5, .93, 'Albedo : '+self.albedoTitle, fontsize=11, ha='center', **sfont)
             #figtext(.5, .85, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', fontsize=10, ha='center')
 
@@ -492,7 +496,7 @@ class SP_EXTRACT:
             ax1.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Reflectance', fontsize=10)
             #ax1.set_yticklabels(input_refarray[obs][extent],fontsize=8)
-            title('Level 2B2 Data', fontsize=12)
+            title('Level 2B2 Data', fontsize=12, **sfont)
 
             ax2 = subplot(412)
             grid(alpha=.5)
@@ -503,7 +507,7 @@ class SP_EXTRACT:
             ax2.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Reflectance', fontsize=10)
             #ax2.set_yticklabels(input_refarray[obs][extent],fontsize=8)
-            title('Photometrically Corrected Data', fontsize=12)
+            title('Photometrically Corrected Data', fontsize=12, **sfont)
 
             ax3 = subplot(413)
             grid(alpha=.5)
@@ -517,7 +521,7 @@ class SP_EXTRACT:
             #ax3.set_yticklabels(input_refarray[obs][extent],fontsize=8)
             contTitle = 'Spectral Continuum  Left: ' + str(self.leftShoulder) + ' right: ' + str(self.rightShoulder)
             #title('Continuum Slope', fontsize=12)
-            title(contTitle, fontsize=12)
+            title(contTitle, fontsize=12, **sfont)
 
             # Calculate the area under the curves
             areaContinuum = np.trapz(continuum_slope_array[obs][leftRightExtent], x=self.wv_array[leftRightExtent])
@@ -540,7 +544,7 @@ class SP_EXTRACT:
             ax4.set_xlim(self.wv_array[extent].min()-10, self.wv_array[extent].max()+10)
             ylabel('Relative Reflectance', fontsize=10)
             #ax4.set_yticklabels(input_refarray[obs][extent],fontsize=8)
-            title('Continuum Removed Spectrum', fontsize=12)
+            title('Continuum Removed Spectrum', fontsize=12, **sfont)
 
 
 
