@@ -48,10 +48,12 @@ class SP_EXTRACT:
         #self.albedo_tab = r'C:\Users\lrmayer\Documents\Mayer\QGIS_Plugin\Spectral_Profiler_2014\high_albedo_coefficients.csv'
             #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\high_albedo_coefficients.csv'
             self.albedo_tab = self.plugin_path +  r'.\data\albedo\high_albedo_coefficients.csv'
+            self.albedoTitle = 'Highlands'
         else:
             # Mare
             #self.albedo_tab = r'C:\Users\lrmayer\.qgis2\python\plugins\SpectralProfiler\data\albedo\low_albedo_coefficients.csv'
             self.albedo_tab = self.plugin_path + r'.\data\albedo\low_albedo_coefficients.csv'
+            self.albedoTitle = 'Mare'
 
         # set plot x min, max
         self.wv_MinLimits = plotMin
@@ -457,6 +459,8 @@ class SP_EXTRACT:
 
         #TODO If the save flag is true we could save out all observations to CSV
 
+        sfont = {'fontname': 'serif'}
+
 
         for obs in range(len(self.observation)):  # lrm
             #Do the plotting
@@ -470,7 +474,11 @@ class SP_EXTRACT:
                 mainTitle = '1$\mu$m Observation: ' + str(self.obsId) + '   File: ' + self.fileName
 
             # Main plot title
-            fig.suptitle(mainTitle, fontsize=12)
+            fig.suptitle(mainTitle, fontsize=12, **sfont)
+
+            # see what this does............
+            figtext(.5, .93, 'Albedo : '+self.albedoTitle, fontsize=11, ha='center', **sfont)
+            #figtext(.5, .85, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', fontsize=10, ha='center')
 
             # Set the horizontal spacing
             fig.subplots_adjust(hspace=0.75)
